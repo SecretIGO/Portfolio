@@ -2,9 +2,124 @@ import React, { useState } from "react";
 
 import { Chip, Divider } from "@mui/material";
 import NavigationBar from '../components/NavigationBar';
+import ProgressBar from '../components/ProgressBar';
 import { theme } from '../general/colors';
 import { font } from '../general/font';
 import './css/CSSProfileScreen.css';
+
+const chipStyle = {
+    fontFamily: font.family.monsterrat,
+    fontSize: font.size.h4body,
+    fontWeight: font.weight.regular,
+    mt: "5px",
+    backgroundColor: `rgb(255, 202, 202)`
+}
+
+const Skill = ({ theme, className, img, label, value }) => {
+    return (
+        <article className={className}>
+            <img src={img} />
+            <Chip
+                label={label}
+                sx={chipStyle}
+            />
+            <div style={{ marginTop: "10px", width: "70%" }}>
+                <ProgressBar theme={theme} value={value} />
+            </div>
+        </article>
+    )
+}
+
+const Languages = ({ theme }) => {
+    return (
+        <>
+            <Skill
+                theme={theme}
+                className={"language"}
+                img={"https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cplusplus/cplusplus-original.svg"}
+                label={"C++"}
+                value={75}
+            />
+            <Skill
+                theme={theme}
+                className={"language"}
+                img={"https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/csharp/csharp-original.svg"}
+                label={"C#"}
+                value={70}
+            />
+            <Skill
+                theme={theme}
+                className={"language"}
+                img={"https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg"}
+                label={"Python"}
+                value={85}
+            />
+            <Skill
+                theme={theme}
+                className={"language"}
+                img={"https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg"}
+                label={"JavaScript"}
+                value={80}
+            />
+            <Skill
+                theme={theme}
+                className={"language"}
+                img={"https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg"}
+                label={"TypeScript"}
+                value={85}
+            />
+            <Skill
+                theme={theme}
+                className={"language"}
+                img={"https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg"}
+                label={"Java"}
+                value={90}
+            />
+            <Skill
+                theme={theme}
+                className={"language"}
+                img={"https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/kotlin/kotlin-original.svg"}
+                label={"Kotlin"}
+                value={85}
+            />
+        </>
+    )
+}
+
+const Libraries = ({ theme }) => {
+    return (
+        <>
+            <Skill
+                theme={theme}
+                className={"language"}
+                img={"https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg"}
+                label={"React"}
+                value={80}
+            />
+            <Skill
+                theme={theme}
+                className={"language"}
+                img={"https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/flask/flask-original.svg"}
+                label={"Flask"}
+                value={80}
+            />
+            <Skill
+                theme={theme}
+                className={"language"}
+                img={"https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/antdesign/antdesign-original.svg"}
+                label={"AntD"}
+                value={85}
+            />
+            <Skill
+                theme={theme}
+                className={"language"}
+                img={"https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/materialui/materialui-original.svg"}
+                label={"Material UI"}
+                value={80}
+            />
+        </>
+    )
+}
 
 const ProfileScreen = () => {
     const [isDarkMode, setIsDarkMode] = useState(true);
@@ -15,6 +130,7 @@ const ProfileScreen = () => {
             <NavigationBar isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
             <div className="container">
                 <main className="content">
+                    {/* Hero */}
                     <section className="hero">
                         <article className="introduction">
                             <p
@@ -51,77 +167,25 @@ const ProfileScreen = () => {
                             </p>
                         </article>
                     </section>
-                    <h3 style={{ alignSelf: "center" }}>  Skills</h3>
-                    <Divider
-                        sx={{
-                            mb: "7.5px"
-                        }}
-                    >
+
+                    {/* Skills */}
+                    <Divider sx={{ mb: "12px" }}>
                         <Chip label="Technical Skills"></Chip>
                     </Divider>
-                    <section className="technicalSkills">
-
-                        <section className="languages">
-                            <article className="language">
-
-                            </article>
-                            <article className="language">
-
-                            </article>
-                            <article className="language">
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cplusplus/cplusplus-original.svg" />
-                                <Chip 
-                                    label="C++"
-                                    sx={{
-                                        fontFamily: font.family.monsterrat,
-                                        fontSize: font.size.h4body,
-                                        fontWeight: font.weight.regular,
-                                        mt: "5px",
-                                        backgroundColor: `rgb(255, 202, 202)`
-                                    }}
-                                />
-                            </article>
-                            <article className="language">
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/kotlin/kotlin-original.svg" />
-                                <Chip 
-                                    label="Kotlin"
-                                    sx={{
-                                        fontFamily: font.family.monsterrat,
-                                        fontSize: font.size.h4body,
-                                        fontWeight: font.weight.regular,
-                                        mt: "5px",
-                                        backgroundColor: `rgb(255, 202, 202)`
-                                    }}
-                                />
-                            </article>
-                            <article className="language">
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" />
-                                <Chip 
-                                    label="ReactJS"
-                                    sx={{
-                                        fontFamily: font.family.monsterrat,
-                                        fontSize: font.size.h4body,
-                                        fontWeight: font.weight.regular,
-                                        mt: "5px",
-                                        backgroundColor: `rgb(255, 202, 202)`
-                                    }}
-                                />
-                            </article>
-                            <article className="language">
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg" />
-                                <Chip 
-                                    label="Java"
-                                    sx={{
-                                        fontFamily: font.family.monsterrat,
-                                        fontSize: font.size.h4body,
-                                        fontWeight: font.weight.regular,
-                                        mt: "5px",
-                                        backgroundColor: `rgb(255, 202, 202)`
-                                    }}
-                                />
-                            </article>
-                        </section>
+                    <section className="skillsContainer">
+                        <Languages />
                     </section>
+
+                    <Divider sx={{ mb: "12px", mt: "24px" }}>
+                        <Chip label="Libraries / Frameworks"></Chip>
+                    </Divider>
+                    <section className="skillsContainer">
+                        <Libraries />
+                    </section>
+
+                    <Divider sx={{ mb: "12px", mt: "24px" }}></Divider>
+
+                    {/* works */}
                     <section className="works">
                         <article>
                             <h1
