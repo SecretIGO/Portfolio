@@ -1,9 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import ProfileScreen from './dev/screens/profile/ProfileScreen';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
-import ProfileScreen from './dev/screens/ProfileScreen';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
