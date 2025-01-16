@@ -27,7 +27,8 @@
     }
 
     .horizontalRule {
-        background-color: var(--background-chip);
+        background: linear-gradient(to right, rgba(0,0,0,0),var(--background-chip), rgba(0,0,0,0));
+        
     }
 
     .chip {
@@ -53,7 +54,7 @@
 .horizontalRule {
     border: 0;
     height: 2px;
-    width: 100%;
+    width: 90%;
     margin-top: 25px;
     margin-bottom: 25px;
 }
@@ -64,7 +65,7 @@
     border-radius: 10px;
 
     font-family: 'Montserrat', sans-serif;
-    font-size: 14;
+    font-size: 14px;
 }
 
 @keyframes gradient {

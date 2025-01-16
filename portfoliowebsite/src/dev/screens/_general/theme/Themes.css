@@ -1,7 +1,7 @@
 @media (prefers-color-scheme: light){
     :root{
         --background: rgb(34, 34, 34);
-        --heading: rgb(234, 124, 124);
+        --heading: rgb(34, 34, 34);
     }
 
     html, body{

@@ -1,49 +1,50 @@
-html, body{
-    display: block;
+html,
+body {
+    display: grid;
+    place-items: center;
     height: 100dvh;
     width: 100%;
 }
 
-.mainContainer{
-    width: 100%;
-    max-width: 105dvw;
+.mainContainer {
+    width: 1200px;
     display: flex;
     flex-direction: column;
     align-items: center;
     transition: 0.3s ease;
 }
 
-.container{
+.container {
     width: 90%;
     border-width: 0px 1px 0 1px;
     border-style: solid;
     border-color: rgb(234, 234, 234);
     border-style: dashed;
-    padding: 15px;
+    padding: 0px 15px 0 15px;
 }
 
-.content{
+.content {
     display: flex;
     flex-direction: column;
 }
 
-.introductoryText{
+.introductoryText {
     margin-bottom: 0;
 }
 
-.heading{
+.heading {
     font-size: clamp(1.5rem, calc(3vw + 1rem), 4.5rem);
     margin-top: 0;
     margin-bottom: 0;
 }
 
-.body{
+.body {
     font-size: clamp(1rem, calc(0.75vw + 1rem), 2.5rem);
     margin-top: 12px;
     text-align: center;
 }
 
-.hero{
+.hero {
     height: 100dvh;
     display: flex;
     flex-direction: column;
@@ -51,7 +52,7 @@ html, body{
     align-items: center;
 }
 
-.letter{
+.letter {
     display: inline-block;
     font-style: italic;
 }
@@ -60,16 +61,17 @@ html, body{
     transition: 0.5s ease;
 }
 
-.hero .heading .letter{
+.hero .heading .letter {
     transition: transform 0.5s ease-in-out, color 0.8s;
 }
 
-.hero .heading:hover #D{
+.hero .heading:hover #D {
     position: relative;
-    color:chartreuse;
+    color: chartreuse;
     transform: translate(180%, 200%);
 }
-.hero .heading:hover #E{
+
+.hero .heading:hover #E {
     position: relative;
     color: chartreuse;
     top: 0%;
@@ -77,31 +79,32 @@ html, body{
     transform: translate(-500%, 200%);
     transition-delay: 0.1s;
 }
-.hero .heading:hover #V{
+
+.hero .heading:hover #V {
     position: relative;
-    color:yellowgreen;
+    color: yellowgreen;
     transform: translate(160%, 200%);
     transition-delay: 0.2s;
 }
 
-.skillsContainer{
+.skillsContainer {
     display: flex;
     flex-direction: column;
 }
 
-.skillsContainer:not(:first-child){
+.skillsContainer:not(:first-child) {
     margin-top: 50px;
 }
 
-.skills{
+.skills {
     display: flex;
-    overflow: auto;
-    scrollbar-width: thin;
-    scroll-behavior: smooth;
+    flex-wrap: wrap;
+    gap: 10px;
     justify-content: center;
+    align-items: center;
 }
 
-.language{
+.language {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -113,18 +116,124 @@ html, body{
     transition: 0.5s ease-out;
 }
 
-.language:hover{
-    background-color: rgba(244,224,224,0.5);
+.language:hover {
+    background-color: rgba(244, 224, 224, 0.5);
 }
 
-.language img{
+.language img {
     width: 50px;
 }
 
-.works{
+.works {
     height: 100dvh;
     display: flex;
 }
 
-.contact{
+.timeline {
+    height: 100dvh;
+    display: flex;
+}
+
+.footer {
+    height: 100dvh;
+    display: flex;
+}
+
+.hidden {
+    opacity: 0;
+    transition: 0.5s ease;
+}
+
+.show {
+    opacity: 1;
+}
+
+@media only screen and (max-width: 1200px) {
+
+    html,
+    body {
+        display: block;
+        height: 100vh;
+        width: 100%;
+    }
+
+    .mainContainer {
+        width: 100%;
+        max-width: 105dvw;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+
+    html,
+    body {
+        display: block;
+        height: 100dvh;
+        width: 100%;
+    }
+
+    .mainContainer {
+        width: 100%;
+        max-width: 105dvw;
+    }
+
+    .hero .heading:hover #E {
+        position: relative;
+        color: chartreuse;
+        top: 0%;
+        left: 0%;
+        transform: translate(-550%, 200%);
+        transition-delay: 0.1s;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    .skillsContainer .horizontalRule:last-child{
+        width: 70%;
+    }
+
+    .show {
+        animation: flicker 1.5s;
+        text-shadow: 0px 0px 5px rgb(34, 134, 34);
+    }
+
+    @keyframes flicker {
+        0% {
+            opacity: 0;
+        }
+
+        30% {
+            opacity: 0.05;
+            text-shadow: 0px 0px 0.5px rgb(34, 255, 34);
+        }
+    
+        50% {
+            opacity: 0.75;
+            text-shadow: 0px 0px 2px rgb(34, 255, 34);
+        }
+
+        60% {
+            opacity: 0.4;
+        }
+
+        80% {
+            opacity: 0.1;
+        }
+
+        82% {
+            opacity: 0.05;
+        }
+
+        85% {
+            text-shadow: 0px 0px 7px rgb(185, 255, 185);
+        }
+
+        90% {
+            opacity: 0.9;
+        }
+        
+        100% {
+            opacity: 1;
+        }
+    }
 }

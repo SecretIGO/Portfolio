@@ -1,7 +1,8 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState, useEffect } from "react";
 
 // local js imports
 import { font } from '../_general/theme/font';
+import observer from '../_general/utils/Observer_ElementOnScreen'
 
 // local css imports
 import '../_general/config/HTMLTagConfig.css';
@@ -138,6 +139,14 @@ const ProfileScreen = () => {
         setTheme(prev => !prev);
     }, [theme]);
 
+    useEffect(() => {
+        const hiddenElements = document.querySelectorAll('.hidden');
+        
+        hiddenElements.forEach((element) => {
+            observer.observe(element);
+        });
+    }, []);
+
     return (
         <div className="mainContainer">
             <NavigationBar isDarkMode={theme} setIsDarkMode={setTheme} />
@@ -195,7 +204,7 @@ const ProfileScreen = () => {
 
                         <article className="skillsContainer">
                             <HorizontalRule title="Libraries / Frameworks" />
-                            <section className="skills" style={{marginBottom: "50px"}}>
+                            <section className="skills" style={{ marginBottom: "50px" }}>
                                 <Libraries />
                             </section>
                             <HorizontalRule />
@@ -207,10 +216,10 @@ const ProfileScreen = () => {
                     <section className="works">
                         <article>
                             <h1
-                                className="heading"
+                                className="heading hidden"
                                 style={{
                                     fontFamily: font.family.monsterrat,
-                                    fontSize: font.size.heading3,
+                                    fontSize: font.size.heading4,
                                     fontWeight: font.weight.bold
                                 }}
                             >
@@ -219,10 +228,19 @@ const ProfileScreen = () => {
                         </article>
                     </section>
                     <section className="timeline">
-                        Explore my journey!
+                        <h1
+                            className="heading hidden"
+                            style={{
+                                fontFamily: font.family.monsterrat,
+                                fontSize: font.size.heading4,
+                                fontWeight: font.weight.bold
+                            }}
+                        >
+                            Explore my Journey!
+                        </h1>
                     </section>
                 </main>
-                <footer className="contact">
+                <footer className="footer">
                     footer
                 </footer>
             </div>

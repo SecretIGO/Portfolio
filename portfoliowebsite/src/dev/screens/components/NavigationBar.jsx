@@ -33,6 +33,7 @@ const NavigationBar = ({ isDarkMode, setIsDarkMode }) => {
 			</Button>
 
 			<ButtonGroup
+				className="main"
 				sx={{
 					borderRadius: "15px",
 					overflow: "hidden",
@@ -50,6 +51,7 @@ const NavigationBar = ({ isDarkMode, setIsDarkMode }) => {
 			</ButtonGroup>
 
 			<ButtonGroup
+				className="contactLinks"
 				sx={{
 					borderRadius: "20px",
 					overflow: "hidden",
