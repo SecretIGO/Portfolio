@@ -132,20 +132,18 @@ const Libraries = ({ theme }) => {
 }
 
 const ProfileScreen = () => {
-    const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    const [theme, setTheme] = useState(systemTheme);
-
-    useMemo(() => {
-        setTheme(prev => !prev);
-    }, [theme]);
+    const [theme, setTheme] = useState(window.matchMedia("(prefers-color-scheme: dark)").matches);
 
     useEffect(() => {
         const hiddenElements = document.querySelectorAll('.hidden');
-        
         hiddenElements.forEach((element) => {
             observer.observe(element);
         });
     }, []);
+
+    useEffect(() => {
+        document.documentElement.setAttribute('data-theme', theme ? 'dark' : 'light');
+    }, [theme]);
 
     return (
         <div className="mainContainer">
@@ -163,7 +161,7 @@ const ProfileScreen = () => {
                                     fontWeight: font.weight.regular
                                 }}
                             >
-                                Software Engineer Intern {systemTheme}
+                                Software Engineer Intern
                             </p>
                             <h1
                                 className="heading unselectable"

@@ -12,12 +12,13 @@ import './css/CSSNavigationBar.css';
 
 const NavigationBar = ({ isDarkMode, setIsDarkMode }) => {
 	const handleModeToggle = () => {
-		setIsDarkMode(prevMode => !prevMode);
+		setIsDarkMode(!isDarkMode);
 	};
 
 	return (
 		<>
 			<Button
+				className="nav-button"
 				sx={{
 					borderRadius: "20px",
 					position: "fixed",
@@ -27,7 +28,7 @@ const NavigationBar = ({ isDarkMode, setIsDarkMode }) => {
 				}}
 				variant="outlined"
 				color="neutral"
-				onClick={() => handleModeToggle()}
+				onClick={handleModeToggle}
 			>
 				{isDarkMode ? <DarkModeIcon /> : <LightModeIcon />}
 			</Button>
@@ -43,10 +44,10 @@ const NavigationBar = ({ isDarkMode, setIsDarkMode }) => {
 				}}
 				variant="soft"
 			>
-				<Button onClick={() => console.log("Profile")}>Profile</Button>
-				<Button onClick={() => console.log("Works")}>Works</Button>
-				<Button onClick={() => console.log("Timeline")}>Timeline</Button>
-				<Button onClick={() => console.log("Contact")}>Contact</Button>
+				<Button className="nav-button" onClick={() => console.log("Profile")}>Profile</Button>
+				<Button className="nav-button" onClick={() => console.log("Works")}>Works</Button>
+				<Button className="nav-button" onClick={() => console.log("Timeline")}>Timeline</Button>
+				<Button className="nav-button" onClick={() => console.log("Contact")}>Contact</Button>
 			</ButtonGroup>
 
 			<ButtonGroup
@@ -61,9 +62,9 @@ const NavigationBar = ({ isDarkMode, setIsDarkMode }) => {
 				spacing="0.5rem"
 				variant="soft"
 			>
-				<Button><GoogleIcon /></Button>
-				<Button><FacebookIcon /></Button>
-				<Button><GitHubIcon /></Button>
+				<Button className="social-button"><GoogleIcon /></Button>
+				<Button className="social-button"><FacebookIcon /></Button>
+				<Button className="social-button"><GitHubIcon /></Button>
 			</ButtonGroup>
 		</>
 	);

@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useMemo, useCallback } from "react";
 
 import { Chip, Divider } from "@mui/material";
 import NavigationBar from '../components/NavigationBar';
 import ProgressBar from '../components/ProgressBar';
 import { theme } from '../general/colors';
 import { font } from '../general/font';
-import './css/CSSProfileScreen.css';
+import './profile/css/CSS_ProfileScreen.css';
 
 const chipStyle = {
     fontFamily: font.family.monsterrat,
@@ -15,10 +15,10 @@ const chipStyle = {
     backgroundColor: `rgb(255, 202, 202)`
 }
 
-const Skill = ({ theme, className, img, label, value }) => {
+const Skill = React.memo(({ theme, className, img, label, value }) => {
     return (
         <article className={className}>
-            <img src={img} />
+            <img src={img} alt={label} />
             <Chip
                 label={label}
                 sx={chipStyle}
@@ -28,9 +28,9 @@ const Skill = ({ theme, className, img, label, value }) => {
             </div>
         </article>
     )
-}
+});
 
-const Languages = ({ theme }) => {
+const Languages = React.memo(({ theme }) => {
     return (
         <>
             <Skill
@@ -84,9 +84,9 @@ const Languages = ({ theme }) => {
             />
         </>
     )
-}
+});
 
-const Libraries = ({ theme }) => {
+const Libraries = React.memo(({ theme }) => {
     return (
         <>
             <Skill
@@ -119,15 +119,19 @@ const Libraries = ({ theme }) => {
             />
         </>
     )
-}
+});
 
 const ProfileScreen = () => {
     const [isDarkMode, setIsDarkMode] = useState(true);
-    const themeColor = theme(isDarkMode);
+    const themeColor = useMemo(() => theme(isDarkMode), [isDarkMode]);
+    
+    const handleThemeToggle = useCallback(() => {
+        setIsDarkMode(prev => !prev);
+    }, []);
 
     return (
         <div className="mainContainer">
-            <NavigationBar isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
+            <NavigationBar isDarkMode={isDarkMode} setIsDarkMode={handleThemeToggle} />
             <div className="container">
                 <main className="content">
                     {/* Hero */}
@@ -173,14 +177,14 @@ const ProfileScreen = () => {
                         <Chip label="Technical Skills"></Chip>
                     </Divider>
                     <section className="skillsContainer">
-                        <Languages />
+                        <Languages theme={themeColor} />
                     </section>
 
                     <Divider sx={{ mb: "12px", mt: "24px" }}>
                         <Chip label="Libraries / Frameworks"></Chip>
                     </Divider>
                     <section className="skillsContainer">
-                        <Libraries />
+                        <Libraries theme={themeColor} />
                     </section>
 
                     <Divider sx={{ mb: "12px", mt: "24px" }}></Divider>

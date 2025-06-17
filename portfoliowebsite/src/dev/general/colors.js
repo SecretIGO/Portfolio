@@ -5,7 +5,9 @@ const lightTheme = {
     background: "#242424",
 
     header: "rgb(36, 36, 36)",
-    body: "rgb(36, 36, 36)"
+    body: "rgb(36, 36, 36)",
+    progressBar: "#0A8B37",
+    progressBarBackground: "rgba(10, 139, 55, 0.2)"
 }
 
 // dark theme palette
@@ -15,7 +17,9 @@ const darkTheme = {
     background: "#242424",
 
     header: "rgb(36, 36, 36)",
-    body: "rgb(255, 255, 255)"
+    body: "rgb(255, 255, 255)",
+    progressBar: "#0A8B37",
+    progressBarBackground: "rgba(10, 139, 55, 0.2)"
 }
 
 export const theme = (isDark) => {

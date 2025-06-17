@@ -1,41 +1,28 @@
-@media (prefers-color-scheme: light){
-    :root{
-        --background: rgb(34, 34, 34);
-        --heading: rgb(34, 34, 34);
-    }
-
-    html, body{
-        background-color: rgb(234, 234, 234);
-    }
-
-    .intro{
-        color: rgb(34, 34, 34);
-    }
-    .heading{
-        color: var(--heading);
-    }
-    .body{
-        color: rgb(34, 34, 34);
-    }
+[data-theme="light"] {
+    --background: rgb(234, 234, 234);
+    --heading: rgb(34, 34, 34);
 }
 
-@media (prefers-color-scheme: dark){
-    :root{
-        --background: rgb(34, 34, 34);
-        --heading: rgb(124, 234, 124);
-    }
+[data-theme="dark"] {
+    --background: rgb(34, 34, 34);
+    --heading: rgb(124, 234, 124);
+}
 
-    html, body{
-        background-color: rgb(34, 34, 34);
-    }
+html, body {
+    background-color: var(--background);
+    transition: background-color 0.3s ease;
+}
 
-    .intro{
-        color: rgb(255, 255, 255);
-    }
-    .heading{
-        color: var(--heading);
-    } 
-    .body{
-        color: rgb(255, 255, 255);
-    }
+[data-theme="light"] .intro,
+[data-theme="light"] .body {
+    color: rgb(34, 34, 34);
+}
+
+[data-theme="dark"] .intro,
+[data-theme="dark"] .body {
+    color: rgb(255, 255, 255);
+}
+
+.heading {
+    color: var(--heading);
 }
