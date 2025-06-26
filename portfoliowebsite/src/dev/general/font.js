@@ -1,7 +1,9 @@
 export const font = {
     family: {
         monsterrat: "'Montserrat', sans-serif",
-        opensans: "'Open Sans', sans-serif"
+        opensans: "'Open Sans', sans-serif",
+        gtWalsheim: "'GT Walsheim', sans-serif",
+        roboto: "'Roboto', sans-serif"
     },
     size: {
         heading1: "4.5rem",

@@ -1,10 +1,9 @@
-import './App.css';
-import ProfileScreen from './dev/screens/profile/ProfileScreen';
+import LandingPage from "./dev/screens/LandingPage/LandingPage";
 
 function App() {
   return (
     <div className="App">
-      <ProfileScreen />
+      <LandingPage />
     </div>
   );
 }
