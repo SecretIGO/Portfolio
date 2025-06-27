@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './css/css_footer.css';
 import './css/css_landing_page.css';
 import './css/css_navbar.css';
-import logo from './image/SecretIGO_ico.png'
+import Navbar from './components/Navbar';
 
 const LandingPage = () => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -19,18 +19,7 @@ const LandingPage = () => {
   return (
     <div className="main-container">
       <header className="grid-item header">
-        <div className="flex-container flex-row flex-between">
-          <div className="logo-banner-container flex-container flex-row flex-center">
-            <img src={logo} alt="Logo" />
-            <h1>SecretIGO</h1>
-          </div>
-          <nav className="flex-container flex-row flex-center">
-            <a href="#home">Home</a>
-            <a href="#about">About</a>
-            <a href="#contact">Projects</a>
-            <a href="#contact">Contact</a>
-          </nav>
-        </div>
+        <Navbar />
       </header>
       <main className="grid-item main-content">
         {isMobile ? (
