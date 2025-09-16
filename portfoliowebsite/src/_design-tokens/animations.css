@@ -1,0 +1,435 @@
+/* Animation Design Tokens */
+
+:root {
+  /* Animation Durations */
+  --animation-duration-instant: 0ms;
+  --animation-duration-fast: 150ms;
+  --animation-duration-normal: 300ms;
+  --animation-duration-slow: 500ms;
+  --animation-duration-slower: 750ms;
+  --animation-duration-slowest: 1000ms;
+
+  /* Animation Delays */
+  --animation-delay-none: 0ms;
+  --animation-delay-fast: 50ms;
+  --animation-delay-normal: 100ms;
+  --animation-delay-slow: 200ms;
+  --animation-delay-slower: 300ms;
+
+  /* Easing Functions */
+  --ease-linear: linear;
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-in-quad: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+  --ease-out-quad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-in-out-quad: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  --ease-in-cubic: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  --ease-out-cubic: cubic-bezier(0.215, 0.61, 0.355, 1);
+  --ease-in-out-cubic: cubic-bezier(0.645, 0.045, 0.355, 1);
+  --ease-in-quart: cubic-bezier(0.895, 0.03, 0.685, 0.22);
+  --ease-out-quart: cubic-bezier(0.165, 0.84, 0.44, 1);
+  --ease-in-out-quart: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-in-quint: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+  --ease-out-quint: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out-quint: cubic-bezier(0.86, 0, 0.07, 1);
+  --ease-in-sine: cubic-bezier(0.47, 0, 0.745, 0.715);
+  --ease-out-sine: cubic-bezier(0.39, 0.575, 0.565, 1);
+  --ease-in-out-sine: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  --ease-in-expo: cubic-bezier(0.95, 0.05, 0.795, 0.035);
+  --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+  --ease-in-out-expo: cubic-bezier(1, 0, 0, 1);
+  --ease-in-circ: cubic-bezier(0.6, 0.04, 0.98, 0.34);
+  --ease-out-circ: cubic-bezier(0.075, 0.82, 0.165, 1);
+  --ease-in-out-circ: cubic-bezier(0.785, 0.135, 0.15, 0.86);
+  --ease-in-back: cubic-bezier(0.6, -0.28, 0.735, 0.045);
+  --ease-out-back: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --ease-in-out-back: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+  /* Spring Animations */
+  --spring-gentle: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --spring-bouncy: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --spring-snappy: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  /* Animation Iteration Counts */
+  --animation-iteration-once: 1;
+  --animation-iteration-twice: 2;
+  --animation-iteration-infinite: infinite;
+
+  /* Animation Fill Modes */
+  --animation-fill-none: none;
+  --animation-fill-forwards: forwards;
+  --animation-fill-backwards: backwards;
+  --animation-fill-both: both;
+
+  /* Animation Directions */
+  --animation-direction-normal: normal;
+  --animation-direction-reverse: reverse;
+  --animation-direction-alternate: alternate;
+  --animation-direction-alternate-reverse: alternate-reverse;
+
+  /* Animation Play States */
+  --animation-play-running: running;
+  --animation-play-paused: paused;
+
+  /* Transform Origins */
+  --transform-origin-center: center;
+  --transform-origin-top: top;
+  --transform-origin-bottom: bottom;
+  --transform-origin-left: left;
+  --transform-origin-right: right;
+  --transform-origin-top-left: top left;
+  --transform-origin-top-right: top right;
+  --transform-origin-bottom-left: bottom left;
+  --transform-origin-bottom-right: bottom right;
+
+  /* Common Animation Presets */
+  --animation-fade-in: fadeIn var(--animation-duration-normal) var(--ease-out);
+  --animation-fade-out: fadeOut var(--animation-duration-normal) var(--ease-in);
+  --animation-slide-in-up: slideInUp var(--animation-duration-normal) var(--ease-out);
+  --animation-slide-in-down: slideInDown var(--animation-duration-normal) var(--ease-out);
+  --animation-slide-in-left: slideInLeft var(--animation-duration-normal) var(--ease-out);
+  --animation-slide-in-right: slideInRight var(--animation-duration-normal) var(--ease-out);
+  --animation-scale-in: scaleIn var(--animation-duration-normal) var(--ease-out-back);
+  --animation-scale-out: scaleOut var(--animation-duration-normal) var(--ease-in-back);
+  --animation-rotate-in: rotateIn var(--animation-duration-normal) var(--ease-out);
+  --animation-bounce-in: bounceIn var(--animation-duration-slow) var(--ease-out-back);
+  --animation-shake: shake var(--animation-duration-normal) var(--ease-in-out);
+  --animation-pulse: pulse var(--animation-duration-slow) var(--ease-in-out) infinite;
+  --animation-spin: spin var(--animation-duration-slow) var(--ease-linear) infinite;
+  --animation-ping: ping var(--animation-duration-slow) var(--ease-out) infinite;
+  --animation-bounce: bounce var(--animation-duration-slow) var(--ease-in-out) infinite;
+
+  /* Transition Presets */
+  --transition-fast: all var(--animation-duration-fast) var(--ease-out);
+  --transition-normal: all var(--animation-duration-normal) var(--ease-in-out);
+  --transition-slow: all var(--animation-duration-slow) var(--ease-in-out);
+  --transition-colors: color var(--animation-duration-normal) var(--ease-out), 
+                       background-color var(--animation-duration-normal) var(--ease-out), 
+                       border-color var(--animation-duration-normal) var(--ease-out);
+  --transition-opacity: opacity var(--animation-duration-normal) var(--ease-out);
+  --transition-transform: transform var(--animation-duration-normal) var(--ease-out);
+  --transition-shadow: box-shadow var(--animation-duration-normal) var(--ease-out);
+  --transition-scale: transform var(--animation-duration-normal) var(--ease-out-back);
+}
+
+/* Keyframe Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes scaleOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+}
+
+@keyframes rotateIn {
+  from {
+    opacity: 0;
+    transform: rotate(-180deg);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: translateX(-10px);
+  }
+  20%, 40%, 60%, 80% {
+    transform: translateX(10px);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes ping {
+  75%, 100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(-25%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: none;
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+/* Utility Classes */
+.animate-fade-in {
+  animation: var(--animation-fade-in);
+}
+
+.animate-fade-out {
+  animation: var(--animation-fade-out);
+}
+
+.animate-slide-in-up {
+  animation: var(--animation-slide-in-up);
+}
+
+.animate-slide-in-down {
+  animation: var(--animation-slide-in-down);
+}
+
+.animate-slide-in-left {
+  animation: var(--animation-slide-in-left);
+}
+
+.animate-slide-in-right {
+  animation: var(--animation-slide-in-right);
+}
+
+.animate-scale-in {
+  animation: var(--animation-scale-in);
+}
+
+.animate-scale-out {
+  animation: var(--animation-scale-out);
+}
+
+.animate-rotate-in {
+  animation: var(--animation-rotate-in);
+}
+
+.animate-bounce-in {
+  animation: var(--animation-bounce-in);
+}
+
+.animate-shake {
+  animation: var(--animation-shake);
+}
+
+.animate-pulse {
+  animation: var(--animation-pulse);
+}
+
+.animate-spin {
+  animation: var(--animation-spin);
+}
+
+.animate-ping {
+  animation: var(--animation-ping);
+}
+
+.animate-bounce {
+  animation: var(--animation-bounce);
+}
+
+/* Transition Utility Classes */
+.transition-fast {
+  transition: var(--transition-fast);
+}
+
+.transition-normal {
+  transition: var(--transition-normal);
+}
+
+.transition-slow {
+  transition: var(--transition-slow);
+}
+
+.transition-colors {
+  transition: var(--transition-colors);
+}
+
+.transition-opacity {
+  transition: var(--transition-opacity);
+}
+
+.transition-transform {
+  transition: var(--transition-transform);
+}
+
+.transition-shadow {
+  transition: var(--transition-shadow);
+}
+
+.transition-scale {
+  transition: var(--transition-scale);
+}
+
+/* Animation State Classes */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: var(--transition-normal);
+}
+
+.animate-on-scroll.animate-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hover Animation Classes */
+.hover-lift {
+  transition: var(--transition-transform);
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+}
+
+.hover-scale {
+  transition: var(--transition-scale);
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+.hover-rotate {
+  transition: var(--transition-transform);
+}
+
+.hover-rotate:hover {
+  transform: rotate(5deg);
+}
+
+/* Loading Animation Classes */
+.loading-dots::after {
+  content: '';
+  animation: loadingDots 1.5s infinite;
+}
+
+@keyframes loadingDots {
+  0%, 20% {
+    content: '';
+  }
+  40% {
+    content: '.';
+  }
+  60% {
+    content: '..';
+  }
+  80%, 100% {
+    content: '...';
+  }
+}
+
+/* Stagger Animation Classes */
+.stagger-1 { animation-delay: var(--animation-delay-none); }
+.stagger-2 { animation-delay: var(--animation-delay-fast); }
+.stagger-3 { animation-delay: var(--animation-delay-normal); }
+.stagger-4 { animation-delay: var(--animation-delay-slow); }
+.stagger-5 { animation-delay: var(--animation-delay-slower); }

@@ -1,11 +1,13 @@
-import LandingPage from "./dev/screens/LandingPage/LandingPage";
+import React from 'react';
+import LandingPage from './pages/landing/LandingPage';
+import './App.css';
 
-function App() {
+const App = () => {
   return (
     <div className="App">
       <LandingPage />
     </div>
   );
-}
+};
 
 export default App;

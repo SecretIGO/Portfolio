@@ -1,0 +1,434 @@
+/* Landing Page Styles - Using Design Tokens */
+
+/* Global smooth scrolling */
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-family-primary);
+}
+
+body {
+  scroll-behavior: smooth;
+  font-family: var(--font-family-primary);
+  overflow-x: hidden;
+}
+
+.main-container {
+  width: 100%;
+  min-height: 100vh;
+  max-width: 2048px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: var(--space-4);
+  padding: 0;
+  box-sizing: border-box;
+  background-color: var(--color-background-secondary);
+  font-family: var(--font-family-primary);
+  /* Offset for fixed header to avoid overlay */
+  padding-top: var(--header-height);
+}
+
+/* Header Styles */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-index-fixed);
+  height: var(--header-height);
+  background: rgba(255, 243, 243, 0.8);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 140, 0, 0.1);
+  box-shadow: var(--shadow-md);
+  width: 100%;
+  /* Ensure a new stacking context so sticky isn't affected by siblings */
+  isolation: isolate;
+}
+
+.header-content {
+  max-width: 2048px;
+  margin: 0 auto;
+  padding: var(--space-1) clamp(var(--space-4), 5vw, var(--space-8));
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+/* Main Content Styles */
+.main-content {
+  background-color: var(--color-primary-100);
+  padding: var(--space-2) clamp(var(--space-4), 5vw, var(--space-8));
+  min-height: calc(100vh - 200px);
+  display: flex;
+  flex-direction: column;
+}
+
+.layout-section {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: var(--space-12);
+  padding: clamp(var(--space-4), 4vw, var(--space-8));
+  background-color: var(--color-secondary-100);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-sm);
+  width: 100%;
+  /* At least 80% of viewport height; grows automatically when content overflows */
+  min-height: 90vh;
+  height: auto;
+}
+
+.layout-section:first-child {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.layout-section h3 {
+  margin-bottom: var(--space-4);
+  text-align: center;
+  color: var(--color-text-primary);
+  font-size: clamp(var(--font-size-base), 3vw, var(--font-size-xl));
+  font-weight: var(--font-weight-semibold);
+}
+
+.layout-title {
+  margin-bottom: var(--space-4);
+  text-align: center;
+  color: var(--color-text-primary);
+  font-size: clamp(var(--font-size-lg), 4vw, var(--font-size-2xl));
+  font-weight: var(--font-weight-semibold);
+}
+
+.layout-section:last-child {
+  margin-bottom: 0;
+}
+
+/* Responsive Layout: CSS-only responsive behavior */
+.main-divisions-responsive {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  gap: clamp(var(--space-4), 3vw, var(--space-8));
+  width: 100%;
+  box-sizing: border-box;
+  flex: 1 1 auto;
+  /* Let content define height so the document can scroll */
+}
+
+/* Layout 1: Original 3 divisions (1-2-1) */
+.main-divisions {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  gap: var(--space-8);
+  width: 100%;
+  box-sizing: border-box;
+  flex: 1 1 auto;
+  /* Remove fixed heights to allow page scroll */
+}
+
+/* Layout 2: Middle and Right merged (1-3) */
+.main-divisions-merged-right {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: var(--space-8);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Layout 3: Left and Middle merged (3-1) */
+.main-divisions-merged-left {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: var(--space-8);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Layout 4: All merged (single) */
+.main-divisions-all-merged {
+  display: grid;
+  grid-template-columns: 1fr;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Ensure grids inside a section fill the section's height */
+.layout-section > .main-divisions-responsive,
+.layout-section > .main-divisions,
+.layout-section > .main-divisions-merged-right,
+.layout-section > .main-divisions-merged-left,
+.layout-section > .main-divisions-all-merged {
+  /* Grow to fill the section's vertical space */
+  flex: 1 1 auto;
+  min-height: 0; /* allow children to size without forcing overflow */
+  align-items: stretch;
+}
+
+/* Ensure each division fills its grid area */
+.main-divisions-responsive > div,
+.main-divisions > div,
+.main-divisions-merged-right > div,
+.main-divisions-merged-left > div,
+.main-divisions-all-merged > div {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-division-1 {
+  background-color: var(--color-background-primary);
+  padding: clamp(var(--space-3), 3vw, var(--space-6));
+  border-radius: var(--border-radius-lg);
+  border: 1px solid var(--color-border-primary);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-shadow);
+  min-width: 0; /* Prevents grid overflow */
+}
+
+.main-division-1:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.main-division-2 {
+  background-color: var(--color-background-primary);
+  padding: clamp(var(--space-3), 3vw, var(--space-6));
+  border-radius: var(--border-radius-lg);
+  border: 1px solid var(--color-border-primary);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-shadow);
+  min-width: 0; /* Prevents grid overflow */
+}
+
+.main-division-2:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.main-division-3 {
+  background-color: var(--color-background-primary);
+  padding: clamp(var(--space-3), 3vw, var(--space-6));
+  border-radius: var(--border-radius-lg);
+  border: 1px solid var(--color-border-primary);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-shadow);
+  min-width: 0; /* Prevents grid overflow */
+}
+
+.main-division-3:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.main-division-merged {
+  background-color: var(--color-background-primary);
+  padding: clamp(var(--space-3), 3vw, var(--space-6));
+  border-radius: var(--border-radius-lg);
+  border: 1px solid var(--color-border-primary);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-shadow);
+  min-width: 0; /* Prevents grid overflow */
+}
+
+.main-division-merged:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.main-division-all {
+  background-color: var(--color-background-primary);
+  padding: clamp(var(--space-3), 3vw, var(--space-6));
+  border-radius: var(--border-radius-lg);
+  border: 1px solid var(--color-border-primary);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-shadow);
+  min-width: 0; /* Prevents grid overflow */
+}
+
+.main-division-all:hover {
+  box-shadow: var(--shadow-md);
+}
+
+/* Grid utility classes */
+.grid-item {
+  grid-column: span 12;
+}
+
+/* Flex utility classes */
+.flex-container {
+  display: flex;
+  width: 100%;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.flex-center {
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-between {
+  justify-content: space-between;
+}
+
+/* Combined utility classes for common patterns */
+.flex-center-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.flex-between-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+
+/* Footer Styles */
+.footer {
+  background-color: var(--color-primary-100);
+  padding: clamp(var(--space-4), 5vw, var(--space-8));
+  width: 100%;
+}
+
+.footer-section {
+  padding: var(--space-4);
+}
+
+.footer a {
+  text-decoration: none;
+  color: var(--color-text-primary);
+  margin: 0 var(--space-4);
+  font-size: clamp(var(--font-size-xs), 2.5vw, var(--font-size-sm));
+  transition: var(--transition-colors);
+}
+
+.footer a:hover {
+  color: var(--color-text-secondary);
+}
+
+/* Responsive breakpoints - CSS-only responsive behavior */
+
+/* Tablet Layout: Middle and Right merged (1-3) */
+@media (max-width: 780px) {
+
+  .footer .flex-container {
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  /* Responsive layout becomes 1-3 (left column, merged right) */
+  .main-divisions-responsive {
+    grid-template-columns: 1fr 3fr;
+  }
+
+  /* Hide division 3 content in the merged right column */
+  .main-divisions-responsive .main-division-3 {
+    display: none;
+  }
+
+  /* Add division 3 content to division 2 in tablet view */
+  .main-divisions-responsive .main-division-2::after {
+    content: '';
+    display: block;
+    margin-top: var(--space-4);
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--color-border-primary);
+  }
+
+  .main-divisions-responsive .main-division-2::before {
+    content: 'Division 3 Content';
+    display: block;
+    margin-top: var(--space-4);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+  }
+
+  /* Other layouts also become responsive */
+  .main-divisions-merged-left {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    height: auto !important;
+    min-height: 0 !important;
+  }
+  
+  .main-divisions-merged-left > .main-division-merged,
+  .main-divisions-merged-left > .main-division-3 {
+    width: 100%;
+    box-sizing: border-box;
+    flex: none;
+    height: auto;
+    min-height: 0;
+  }
+}
+
+/* Mobile Layout: Stacked divisions */
+@media (max-width: 480px) {
+  .main-container,
+  .main-content,
+  .layout-section,
+  .main-divisions-responsive {
+    height: auto !important;
+    min-height: 0 !important;
+  }
+
+  /* Responsive layout becomes stacked */
+  .main-divisions-responsive {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  /* Show all divisions in mobile */
+  .main-divisions-responsive .main-division-3 {
+    display: block;
+  }
+
+  /* Remove pseudo-content in mobile */
+  .main-divisions-responsive .main-division-2::before,
+  .main-divisions-responsive .main-division-2::after {
+    display: none;
+  }
+
+  /* Adjust padding and sizing for mobile */
+  .main-division-1,
+  .main-division-2,
+  .main-division-3 {
+    padding: clamp(var(--space-2), 2vw, var(--space-4));
+    border-radius: var(--border-radius-md);
+  }
+
+  .layout-section h3 {
+    font-size: clamp(var(--font-size-base), 3vw, var(--font-size-lg));
+    margin-bottom: var(--space-2);
+  }
+
+  .flex-container h4 {
+    font-size: clamp(var(--font-size-sm), 2.5vw, var(--font-size-base));
+  }
+
+  .flex-container p {
+    font-size: clamp(var(--font-size-xs), 2vw, var(--font-size-sm));
+  }
+}
+
+/* Ensure all images are responsive */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}

@@ -1,0 +1,495 @@
+/* Modern MegaDropdown Component Styles */
+
+.megadropdown-container {
+  width: 100%;
+  max-width: 2048px;
+  height: auto;
+  max-height: 400px;
+  background: #ffffff;
+  position: fixed;
+  left: 50%;
+  top: 0;
+  z-index: 1000;
+  overflow: hidden;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  margin: 0 auto;
+  padding: 0;
+  box-sizing: border-box;
+  transform: translateX(-50%) translateY(-100%);
+  border-radius: 0 0 16px 16px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(255, 140, 0, 0.2);
+  backdrop-filter: blur(20px);
+}
+
+.megadropdown-container.visible {
+  /* Offset exactly by the sticky header's height */
+  transform: translateX(-50%) translateY(var(--header-height));
+}
+
+.megadropdown-layout {
+  display: flex;
+  height: 100%;
+  max-height: 400px;
+}
+
+/* Year Navigation Sidebar */
+.year-navigation {
+  width: 200px;
+  background: #f8f9fa;
+  border-right: 1px solid rgba(255, 140, 0, 0.2);
+  padding: var(--space-6) var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.navigation-title {
+  color: #ff8c00;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  opacity: 0.9;
+}
+
+.year-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.year-button {
+  background: transparent;
+  border: 1px solid rgba(255, 140, 0, 0.2);
+  color: #333333;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--border-radius-md);
+  cursor: pointer;
+  transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease,
+              transform 180ms ease, padding-right 200ms ease, margin-right 200ms ease;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+  display: flex;                /* enable sliding label with auto margins */
+  align-items: center;
+}
+
+.year-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 140, 0, 0.1), transparent);
+  transition: left 0.5s;
+}
+
+.year-button:hover::before {
+  left: 100%;
+}
+
+.year-button:hover {
+  background: rgba(255, 140, 0, 0.1);
+  border-color: rgba(255, 140, 0, 0.3);
+  transform: translateX(4px);
+}
+
+.year-button.active {
+  /* Simulate text shifting to the right via padding/margin animation */
+  margin-right: calc(-1 * var(--space-4));
+  padding-right: var(--space-4); /* keep standard padding so text stays left-aligned */
+  background: linear-gradient(135deg, #ff8c00, #ff6b35);
+  border-color: #ff8c00;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(255, 140, 0, 0.3);
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-right: none;
+}
+
+.year-button.active:hover {
+  transform: none;
+}
+
+/* Remove label alignment animation */
+
+/* Main Content Area */
+.content-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-6);
+  overflow: hidden;
+  height: 100%;
+  max-height: 400px;
+}
+
+.content-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--space-4);
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid rgba(255, 140, 0, 0.2);
+}
+
+.content-title-clip {
+  display: inline-block;
+  overflow: hidden;
+  line-height: 1;
+}
+
+.year-clip {
+  display: inline-block;
+  overflow: hidden;
+  line-height: 1;
+  height: 1em;
+  vertical-align: baseline;
+}
+
+.year-text {
+  display: inline-block;
+  will-change: transform;
+  vertical-align: baseline;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.content-title {
+  color: #333333;
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  margin: 0;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.5ch;
+  line-height: 1.05;
+}
+
+.project-count {
+  background: rgba(255, 140, 0, 0.1);
+  color: #ff8c00;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--border-radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  border: 1px solid rgba(255, 140, 0, 0.2);
+}
+
+/* Scrollable Projects Container */
+.projects-scroll-container {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: var(--space-2);
+  height: 0;
+  min-height: 200px;
+}
+
+
+.projects-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+/* Directional list transitions */
+.projects-list.anim-out {
+  animation: fadeOut var(--animation-duration-fast) var(--ease-in) forwards;
+}
+
+.projects-list.anim-in {
+  animation: fadeIn var(--animation-duration-fast) var(--ease-out) forwards;
+}
+
+/* Title directional animations (year-only) */
+.year-text.title-anim-out.up {
+  animation: titleOutUp var(--animation-duration-fast, 150ms) var(--ease-in, ease-in) forwards;
+}
+
+.year-text.title-anim-out.down {
+  animation: titleOutDown var(--animation-duration-fast, 150ms) var(--ease-in, ease-in) forwards;
+}
+
+.year-text.title-anim-in.up {
+  animation: titleInUp var(--animation-duration-fast, 150ms) var(--ease-out, ease-out) forwards;
+}
+
+.year-text.title-anim-in.down {
+  animation: titleInDown var(--animation-duration-fast, 150ms) var(--ease-out, ease-out) forwards;
+}
+
+@keyframes titleOutUp {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-16px); }
+}
+
+@keyframes titleOutDown {
+  from { transform: translateY(0); }
+  to   { transform: translateY(16px); }
+}
+
+@keyframes titleInUp {
+  from { transform: translateY(16px); }
+  to   { transform: translateY(0); }
+}
+
+@keyframes titleInDown {
+  from { transform: translateY(-16px); }
+  to   { transform: translateY(0); }
+}
+
+/* Project Cards */
+.project-card {
+  background: #f8f9fa;
+  border: 1px solid rgba(255, 140, 0, 0.2);
+  border-radius: var(--border-radius-lg);
+  padding: var(--space-4);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.project-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #ff8c00, #ff6b35, #ff8c00);
+  transform: scaleX(0);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.project-card:hover::before {
+  transform: scaleX(1);
+}
+
+.project-card:hover {
+  background: #ffffff;
+  border-color: rgba(255, 140, 0, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 140, 0, 0.1);
+}
+
+.project-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-2);
+}
+
+.project-title {
+  color: #333333;
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  margin: 0;
+  line-height: 1.2;
+  text-align: center;
+}
+
+
+.project-description {
+  color: #666666;
+  font-size: var(--font-size-sm);
+  line-height: 1.5;
+  margin: 0 0 var(--space-3) 0;
+}
+
+/* Language Tags */
+.project-languages {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+  justify-content: center;
+}
+
+.language-tag {
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--border-radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  border: 1px solid;
+  white-space: nowrap;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.language-tag:hover {
+  transform: translateY(-1px);
+}
+
+/* Frontend - Orange */
+.language-frontend {
+  background: rgba(255, 140, 0, 0.1);
+  color: #ff8c00;
+  border-color: rgba(255, 140, 0, 0.2);
+}
+
+.language-frontend:hover {
+  background: rgba(255, 140, 0, 0.2);
+  border-color: rgba(255, 140, 0, 0.4);
+}
+
+/* Backend - Blue */
+.language-backend {
+  background: rgba(59, 130, 246, 0.1);
+  color: #3b82f6;
+  border-color: rgba(59, 130, 246, 0.2);
+}
+
+.language-backend:hover {
+  background: rgba(59, 130, 246, 0.2);
+  border-color: rgba(59, 130, 246, 0.4);
+}
+
+/* Libraries - Green */
+.language-libraries {
+  background: rgba(34, 197, 94, 0.1);
+  color: #22c55e;
+  border-color: rgba(34, 197, 94, 0.2);
+}
+
+.language-libraries:hover {
+  background: rgba(34, 197, 94, 0.2);
+  border-color: rgba(34, 197, 94, 0.4);
+}
+
+/* Database - Light Blue */
+.language-database {
+  background: rgba(14, 165, 233, 0.1);
+  color: #0ea5e9;
+  border-color: rgba(14, 165, 233, 0.2);
+}
+
+.language-database:hover {
+  background: rgba(14, 165, 233, 0.2);
+  border-color: rgba(14, 165, 233, 0.4);
+}
+
+/* Framework - Purple */
+.language-framework {
+  background: rgba(147, 51, 234, 0.1);
+  color: #9333ea;
+  border-color: rgba(147, 51, 234, 0.2);
+}
+
+.language-framework:hover {
+  background: rgba(147, 51, 234, 0.2);
+  border-color: rgba(147, 51, 234, 0.4);
+}
+
+/* Other/Uncategorized - Gray */
+.language-other {
+  background: rgba(107, 114, 128, 0.1);
+  color: #6b7280;
+  border-color: rgba(107, 114, 128, 0.2);
+}
+
+.language-other:hover {
+  background: rgba(107, 114, 128, 0.2);
+  border-color: rgba(107, 114, 128, 0.4);
+}
+
+/* Legend Styles */
+.legend {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: nowrap;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.legend-label {
+  font-size: var(--font-size-xs);
+  color: #666666;
+  font-weight: var(--font-weight-medium);
+  white-space: nowrap;
+}
+
+/* Legend Color Dots */
+.legend-frontend {
+  background: #ff8c00;
+}
+
+.legend-backend {
+  background: #3b82f6;
+}
+
+.legend-framework {
+  background: #9333ea;
+}
+
+.legend-libraries {
+  background: #22c55e;
+}
+
+.legend-database {
+  background: #0ea5e9;
+}
+
+/* No Projects State */
+.no-projects {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  color: #999999;
+  font-size: var(--font-size-base);
+  font-style: italic;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .megadropdown-layout {
+    flex-direction: column;
+  }
+  
+  .year-navigation {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 140, 0, 0.2);
+  }
+  
+  .year-list {
+    flex-direction: row;
+    overflow-x: auto;
+    gap: var(--space-2);
+  }
+  
+  .year-button {
+    min-width: 80px;
+    text-align: center;
+  }
+  
+  .content-area {
+    padding: var(--space-4);
+  }
+  
+  .project-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2);
+  }
+}

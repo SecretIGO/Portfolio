@@ -1,13 +1,94 @@
+/* Import Design Tokens */
+@import './_design-tokens/colors.css';
+@import './_design-tokens/typography.css';
+@import './_design-tokens/spacing.css';
+@import './_design-tokens/breakpoints.css';
+@import './_design-tokens/animations.css';
+
+/* Import Shared Styles */
+@import './pages/_pages_common.css';
+
+/* Global Styles */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-primary);
+  background-color: var(--color-background-primary);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Global component sizing tokens */
+:root {
+  /* Keep header height consistent for sticky positioning and dropdown offset */
+  --header-height: clamp(40px, 8vh, 60px);
+}
+
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: var(--font-family-mono);
+  font-size: 0.875em;
+  background-color: var(--color-secondary-100);
+  padding: 0.125rem 0.25rem;
+  border-radius: var(--border-radius-sm);
+}
+
+pre {
+  font-family: var(--font-family-mono);
+  background-color: var(--color-secondary-100);
+  padding: var(--padding-md);
+  border-radius: var(--border-radius-md);
+  overflow-x: auto;
+}
+
+/* Focus Styles */
+:focus-visible {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 2px;
+}
+
+/* Selection Styles */
+::selection {
+  background-color: var(--color-primary-200);
+  color: var(--color-text-primary);
+}
+
+/* Scrollbar Styles */
+html {
+  overflow-y: scroll;
+}
+
+/* Firefox scrollbar styling */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #ff8c00 transparent;
+}
+
+/* Webkit scrollbar styling */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ff8c00;
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ff6b35;
 }
