@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './MegaDropdown.css';
 import projects from '../../data/projects';
+import { sortLanguagesByCategory } from '../../utils/languageUtils';
 
 interface MegaDropdownProps {
   isVisible: boolean;
@@ -93,22 +94,6 @@ const MegaDropdown: React.FC<MegaDropdownProps> = ({
     };
   }, []);
   
-  const getLanguageCategory = (language: string): string => {
-    const categories = {
-      frontend: ['JavaScript', 'TypeScript', 'HTML', 'CSS', 'SCSS', 'Sass', 'jQuery', 'Bootstrap', 'Tailwind CSS', 'Material-UI', 'Chakra UI', 'Styled Components', 'Emotion'],
-      backend: ['Node.js', 'Python', 'Java', 'C#', 'PHP', 'Ruby', 'Go', 'Rust', 'C++', 'C', 'Kotlin', 'Swift', 'Scala', 'Elixir', 'Clojure', 'Haskell', 'F#', 'Erlang', 'Perl', 'Lua', 'R', 'MATLAB', 'Julia', 'Dart', 'Crystal', 'Nim', 'Zig'],
-      framework: ['React', 'Vue.js', 'Angular', 'Svelte', 'Next.js', 'Nuxt.js', 'Gatsby', 'React Native', 'Flutter', 'Ionic', 'Xamarin', 'Swift UI', 'Jetpack Compose', 'Express', 'FastAPI', 'Flask', 'Django', 'Spring Boot', 'Laravel', 'Ruby on Rails', 'ASP.NET', 'Gin', 'Echo', 'Fiber', 'Actix', 'Rocket', 'Warp', 'Electron', 'Tauri', 'Cordova', 'PhoneGap'],
-      libraries: ['TensorFlow', 'PyTorch', 'Scikit-learn', 'Pandas', 'NumPy', 'OpenCV', 'Three.js', 'D3.js', 'Chart.js', 'Lodash', 'Moment.js', 'Axios', 'Socket.io', 'GraphQL', 'Apollo', 'Prisma', 'Mongoose', 'Sequelize', 'TypeORM', 'Hibernate', 'Entity Framework', 'ActiveRecord', 'Jest', 'Cypress', 'Playwright', 'Selenium'],
-      database: ['MongoDB', 'PostgreSQL', 'MySQL', 'SQLite', 'Redis', 'Cassandra', 'DynamoDB', 'Firebase', 'Supabase', 'CouchDB', 'Neo4j', 'InfluxDB', 'TimescaleDB', 'Elasticsearch', 'Solr', 'MariaDB', 'Oracle', 'SQL Server', 'Amazon RDS', 'Google Cloud SQL', 'Azure SQL', 'PlanetScale', 'Neon', 'Turso']
-    };
-
-    for (const [category, languages] of Object.entries(categories)) {
-      if (languages.includes(language)) {
-        return category;
-      }
-    }
-    return 'other';
-  };
 
   return (
     <div 
@@ -183,20 +168,7 @@ const MegaDropdown: React.FC<MegaDropdownProps> = ({
                   </div>
                   <p className="project-description">{project.description}</p>
                   <div className="project-languages">
-                    {project.languages
-                      .map(language => ({
-                        name: language,
-                        category: getLanguageCategory(language)
-                      }))
-                      .sort((a, b) => {
-                        const categoryOrder = ['frontend', 'backend', 'framework', 'libraries', 'database', 'other'];
-                        const aIndex = categoryOrder.indexOf(a.category);
-                        const bIndex = categoryOrder.indexOf(b.category);
-                        if (aIndex !== bIndex) {
-                          return aIndex - bIndex;
-                        }
-                        return a.name.localeCompare(b.name);
-                      })
+                    {sortLanguagesByCategory(project.languages)
                       .map((lang, index) => (
                         <span key={index} className={`language-tag language-${lang.category}`}>
                           {lang.name}

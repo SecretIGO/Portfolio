@@ -297,28 +297,7 @@ body {
 }
 
 
-/* Footer Styles */
-.footer {
-  background-color: var(--color-primary-100);
-  padding: clamp(var(--space-4), 5vw, var(--space-8));
-  width: 100%;
-}
-
-.footer-section {
-  padding: var(--space-4);
-}
-
-.footer a {
-  text-decoration: none;
-  color: var(--color-text-primary);
-  margin: 0 var(--space-4);
-  font-size: clamp(var(--font-size-xs), 2.5vw, var(--font-size-sm));
-  transition: var(--transition-colors);
-}
-
-.footer a:hover {
-  color: var(--color-text-secondary);
-}
+/* Footer styles moved to components/footer/Footer.css */
 
 /* Responsive breakpoints - CSS-only responsive behavior */
 

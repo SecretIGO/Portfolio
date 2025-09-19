@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from '../../assets/images/SecretIGO_ico.png';
 import './Navbar.css';
 
 interface NavbarProps {
@@ -17,7 +16,7 @@ const Navbar: React.FC<NavbarProps> = ({
   return (
     <div className="navbar-container">
       <div className="logo-banner-container">
-        <img src={logo} alt="Logo" />
+        <img src="/images/SecretIGO_ico.png" alt="Logo" />
         <h1>SecretIGO</h1>
       </div>
       <nav className="navbar-nav">

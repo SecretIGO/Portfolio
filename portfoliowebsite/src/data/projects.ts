@@ -28,7 +28,7 @@ const projects = [
   { year: 2020, title: 'Older1', description: 'Year 2020 project', languages: ['Java', 'Spring', 'Oracle'] },
   { year: 2019, title: 'Older2', description: 'Older Description', languages: ['Electron', 'JavaScript', 'SQLite'] },
   { year: 2018, title: 'Older3', description: 'Older Description', languages: ['Python', 'Django', 'PostgreSQL'] },
-  { year: 2017, title: 'Older4', description: 'Older Description', languages: ['PHP', 'Laravel', 'MySQL'] },
+  { year: 2017, title: 'Older4', description: 'Older Description', languages: ['Kotlin', 'Android SDK', 'AndroidX'] },
   { year: 2017, title: 'Older5', description: 'Older Description', languages: ['PHP', 'Laravel', 'MySQL'] },
   { year: 2017, title: 'Older6', description: 'Older Description', languages: ['PHP', 'Laravel', 'MySQL'] },
   { year: 2016, title: 'Older7', description: 'Year 2016 project', languages: ['PHP', 'Laravel', 'Magic'] },

@@ -1,12 +1,12 @@
-import React, { useState, useCallback, useRef } from 'react';
-import './LandingPage.css';
-import Navbar from '../../components/navbar/Navbar';
-import AnimationDemo from '../../components/animation-demo/AnimationDemo';
+import React, { useCallback, useRef, useState } from 'react';
 import MegaDropdown from '../../components/mega-dropdown/MegaDropdown';
+import Navbar from '../../components/navbar/Navbar';
+import Footer from '../../components/footer/Footer';
+import './LandingPage.css';
 
 const LandingPage: React.FC = () => {
   const [isProjectsHovered, setIsProjectsHovered] = useState(false);
-  const collapseTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const collapseTimeoutRef = useRef<number | null>(null);
 
   const handleMouseLeave = useCallback(() => {
     const timeout = setTimeout(() => {
@@ -87,23 +87,9 @@ const LandingPage: React.FC = () => {
           </section>
         </main>
       </div>
-      <footer className="grid-item footer flex-between-row">
-        <section className="footer-section">
-          <h4>Contact Info</h4>
-          <div className="flex-row">
-            <a>Email: johanzdavidtolentino@gmail.com</a>
-            <a>Mobile: +63 920-167-3680</a>
-          </div>
-        </section>
-        <section className="footer-section">
-          <h4>Follow Us</h4>
-          <div className="flex-row">
-            <a href="#twitter">Twitter</a>
-            <a href="#facebook">Facebook</a>
-            <a href="#linkedin">LinkedIn</a>
-          </div>
-        </section>
-      </footer >
+      <footer className="footer">
+        <Footer />
+      </footer>
     </>
   );
 };

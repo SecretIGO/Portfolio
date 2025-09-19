@@ -1,0 +1,415 @@
+/* Footer Component Styles */
+
+.footer {
+  /* Warm, copper-friendly backdrop instead of blue */
+  background: linear-gradient(180deg, #fffaf5 0%, #fff4eb 100%);
+  width: 100%;
+  min-height: 400px; /* match SVG viewBox height */
+  display: flex;
+  align-items: center; /* center inner container vertically */
+  position: relative; /* to contain background SVG */
+  overflow: hidden; /* hide overflowing animation */
+}
+
+.footer-tech-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  opacity: 0.6;
+  pointer-events: none; /* allow clicks to pass through */
+}
+
+.footer-content {
+  max-width: none; /* take full width */
+  margin: 0 auto;
+  padding: clamp(var(--space-6), 6vw, var(--space-10));
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 1; /* above animated background */
+}
+
+/* Futuristic Panel Layout */
+.futuristic-panel {
+  /* White background at 0.3 opacity with subtle 1px blur */
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
+  border: 1px solid rgba(255, 140, 0, 0.12);
+  box-shadow: 
+    0 0 0 1px rgba(255, 255, 255, 0.05),
+    0 8px 32px rgba(0, 0, 0, 0.04);
+  padding: clamp(var(--space-6), 5vw, var(--space-10));
+  width: 100%;
+  max-width: 2048px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+
+/* center rail through the panel to echo background line */
+.futuristic-panel::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 1px;
+  transform: translateY(-50%);
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(255,140,0,0.3) 20%, 
+    rgba(255,140,0,0.6) 50%, 
+    rgba(255,140,0,0.3) 80%, 
+    transparent 100%);
+  opacity: 0.7;
+}
+
+.panel-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: clamp(var(--space-8), 8vw, var(--space-12));
+  margin-bottom: clamp(var(--space-6), 4vw, var(--space-8));
+}
+
+.panel-section {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* copper connector from center rail into each section */
+.panel-section::before {
+  content: '';
+  position: absolute;
+  top: -16px;
+  left: 0;
+  width: 32px;
+  height: 1px;
+  background: linear-gradient(90deg, #ff8c00, transparent);
+  opacity: 0.6;
+}
+
+/* Company Section */
+.company-section {
+  grid-column: span 1;
+}
+
+.section-header {
+  margin-bottom: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-2);
+}
+
+.company-logo {
+  width: clamp(40px, 6vw, 56px);
+  height: auto;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.15));
+}
+
+.company-name {
+  margin: 0 0 var(--space-1) 0;
+  font-size: clamp(1.75rem, 5vw, 2.5rem);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.5px;
+}
+
+.company-name--sm {
+  font-size: clamp(1.25rem, 3.8vw, 1.75rem);
+}
+
+.gradient-text {
+  background: linear-gradient(90deg, #ff8c00 0%, #ff6b35 50%, #ff4500 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.company-tagline {
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.mission-statement p {
+  margin: 0 0 var(--space-4) 0;
+  color: var(--color-text-primary);
+  font-size: var(--font-size-sm);
+  line-height: 1.6;
+}
+
+.tech-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.tech-badge {
+  background: rgba(255, 140, 0, 0.08);
+  border: 1px solid rgba(255, 140, 0, 0.2);
+  color: #ff8c00;
+  padding: var(--space-1) var(--space-2);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Section Titles */
+.section-title {
+  margin: 0 0 var(--space-3) 0;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: #ff8c00;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid rgba(255, 140, 0, 0.15);
+  padding-bottom: var(--space-1);
+}
+
+/* Contact Section */
+.contact-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  text-decoration: none;
+  color: var(--color-text-primary);
+  font-size: var(--font-size-sm);
+  padding: var(--space-3);
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 140, 0, 0.08);
+  transition: all var(--animation-duration-fast) var(--ease-out);
+  position: relative;
+}
+
+.contact-item:hover {
+  background: rgba(255, 140, 0, 0.04);
+  border-color: rgba(255, 140, 0, 0.2);
+  transform: translateY(-1px);
+}
+
+.contact-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: rgba(255, 140, 0, 0.1);
+  border: 1px solid rgba(255, 140, 0, 0.2);
+}
+
+.contact-icon svg {
+  color: #ff8c00;
+}
+
+.contact-text {
+  color: var(--color-text-primary);
+  text-decoration: none;
+}
+.contact-text a {
+  color: var(--color-text-primary);
+  text-decoration: none;
+}
+.contact-text a:hover {
+  color: #ff8c00;
+}
+
+/* Services Section */
+.services-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.service-item {
+  padding: var(--space-2) var(--space-3);
+  background: rgba(255, 255, 255, 0.02);
+  border-left: 2px solid rgba(255, 140, 0, 0.3);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-sm);
+  transition: all var(--animation-duration-fast) var(--ease-out);
+}
+
+.service-item:hover {
+  background: rgba(255, 140, 0, 0.04);
+  border-left-color: #ff8c00;
+  transform: translateX(2px);
+}
+
+/* Social Section */
+.social-buttons {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.social-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 140, 0, 0.15);
+  text-decoration: none;
+  transition: all var(--animation-duration-fast) var(--ease-out);
+  position: relative;
+  overflow: hidden;
+}
+
+.social-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,140,0,0.1), rgba(255,107,53,0.1));
+  opacity: 0;
+  transition: opacity var(--animation-duration-fast) var(--ease-out);
+}
+
+.social-btn:hover::before {
+  opacity: 1;
+}
+
+.social-btn:hover {
+  border-color: rgba(255, 140, 0, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 140, 0, 0.2);
+}
+
+/* Brand background gradients on hover */
+.social-btn[aria-label="Twitter"]:hover::before {
+  background: linear-gradient(135deg, rgba(29,161,242,0.15), rgba(29,161,242,0.25));
+}
+.social-btn[aria-label="Facebook"]:hover::before {
+  background: linear-gradient(135deg, rgba(24,119,242,0.15), rgba(24,119,242,0.25));
+}
+.social-btn[aria-label="LinkedIn"]:hover::before {
+  background: linear-gradient(135deg, rgba(10,102,194,0.15), rgba(10,102,194,0.25));
+}
+.social-btn[aria-label="GitHub"]:hover::before {
+  background: linear-gradient(135deg, rgba(36,41,46,0.12), rgba(0,0,0,0.18));
+}
+
+.social-btn svg {
+  color: #ff8c00;
+  position: relative;
+  z-index: 1;
+  transition: transform var(--animation-duration-fast) var(--ease-out);
+}
+
+.social-btn:hover svg {
+  transform: scale(1.1);
+}
+
+/* Social brand hover colors */
+.social-btn[aria-label="Twitter"]:hover svg {
+  color: #1DA1F2;
+}
+.social-btn[aria-label="Twitter"]:hover {
+  border-color: rgba(29, 161, 242, 0.4);
+  box-shadow: 0 4px 12px rgba(29, 161, 242, 0.25);
+}
+
+.social-btn[aria-label="Facebook"]:hover svg {
+  color: #1877F2;
+}
+.social-btn[aria-label="Facebook"]:hover {
+  border-color: rgba(24, 119, 242, 0.4);
+  box-shadow: 0 4px 12px rgba(24, 119, 242, 0.25);
+}
+
+.social-btn[aria-label="LinkedIn"]:hover svg {
+  color: #0A66C2;
+}
+.social-btn[aria-label="LinkedIn"]:hover {
+  border-color: rgba(10, 102, 194, 0.4);
+  box-shadow: 0 4px 12px rgba(10, 102, 194, 0.25);
+}
+
+.social-btn[aria-label="GitHub"]:hover svg {
+  color: #24292e;
+}
+.social-btn[aria-label="GitHub"]:hover {
+  border-color: rgba(36, 41, 46, 0.4);
+  box-shadow: 0 4px 12px rgba(36, 41, 46, 0.25);
+}
+
+/* Panel Footer */
+.panel-footer {
+  border-top: 1px solid rgba(255, 140, 0, 0.1);
+  padding-top: var(--space-4);
+  text-align: center;
+}
+
+.credit-line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-2);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+}
+
+.separator {
+  color: rgba(255, 140, 0, 0.5);
+}
+
+.creator {
+  color: #ff8c00;
+  font-weight: var(--font-weight-medium);
+}
+
+.tagline {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  font-style: italic;
+  opacity: 0.7;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .panel-grid {
+    grid-template-columns: 2fr 1fr 1fr;
+  }
+  .services-section {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 900px) {
+  .panel-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-6);
+  }
+  .company-section {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 640px) {
+  .panel-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+  
+  .credit-line {
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+}

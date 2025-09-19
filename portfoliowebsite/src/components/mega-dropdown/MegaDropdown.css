@@ -329,64 +329,64 @@
   transform: translateY(-1px);
 }
 
-/* Frontend - Orange */
+/* Frontend – Coral (#FF6B6B) */
 .language-frontend {
-  background: rgba(255, 140, 0, 0.1);
-  color: #ff8c00;
-  border-color: rgba(255, 140, 0, 0.2);
+  background: rgba(var(--color-category-frontend-rgb), 0.10);
+  color: var(--color-category-frontend);
+  border-color: rgba(var(--color-category-frontend-rgb), 0.20);
 }
 
 .language-frontend:hover {
-  background: rgba(255, 140, 0, 0.2);
-  border-color: rgba(255, 140, 0, 0.4);
+  background: rgba(var(--color-category-frontend-rgb), 0.20);
+  border-color: rgba(var(--color-category-frontend-rgb), 0.40);
 }
 
-/* Backend - Blue */
+/* Backend – Navy (#1E3A8A) */
 .language-backend {
-  background: rgba(59, 130, 246, 0.1);
-  color: #3b82f6;
-  border-color: rgba(59, 130, 246, 0.2);
+  background: rgba(var(--color-category-backend-rgb), 0.10);
+  color: var(--color-category-backend);
+  border-color: rgba(var(--color-category-backend-rgb), 0.20);
 }
 
 .language-backend:hover {
-  background: rgba(59, 130, 246, 0.2);
-  border-color: rgba(59, 130, 246, 0.4);
+  background: rgba(var(--color-category-backend-rgb), 0.20);
+  border-color: rgba(var(--color-category-backend-rgb), 0.40);
 }
 
-/* Libraries - Green */
+/* Libraries – Sage Green (#4ADE80) */
 .language-libraries {
-  background: rgba(34, 197, 94, 0.1);
-  color: #22c55e;
-  border-color: rgba(34, 197, 94, 0.2);
+  background: rgba(var(--color-category-libraries-rgb), 0.10);
+  color: var(--color-category-libraries);
+  border-color: rgba(var(--color-category-libraries-rgb), 0.20);
 }
 
 .language-libraries:hover {
-  background: rgba(34, 197, 94, 0.2);
-  border-color: rgba(34, 197, 94, 0.4);
+  background: rgba(var(--color-category-libraries-rgb), 0.20);
+  border-color: rgba(var(--color-category-libraries-rgb), 0.40);
 }
 
-/* Database - Light Blue */
+/* Database – Cyan (#06B6D4) */
 .language-database {
-  background: rgba(14, 165, 233, 0.1);
-  color: #0ea5e9;
-  border-color: rgba(14, 165, 233, 0.2);
+  background: rgba(var(--color-category-database-rgb), 0.10);
+  color: var(--color-category-database);
+  border-color: rgba(var(--color-category-database-rgb), 0.20);
 }
 
 .language-database:hover {
-  background: rgba(14, 165, 233, 0.2);
-  border-color: rgba(14, 165, 233, 0.4);
+  background: rgba(var(--color-category-database-rgb), 0.20);
+  border-color: rgba(var(--color-category-database-rgb), 0.40);
 }
 
-/* Framework - Purple */
+/* Framework – Violet (#8B5CF6) */
 .language-framework {
-  background: rgba(147, 51, 234, 0.1);
-  color: #9333ea;
-  border-color: rgba(147, 51, 234, 0.2);
+  background: rgba(var(--color-category-framework-rgb), 0.10);
+  color: var(--color-category-framework);
+  border-color: rgba(var(--color-category-framework-rgb), 0.20);
 }
 
 .language-framework:hover {
-  background: rgba(147, 51, 234, 0.2);
-  border-color: rgba(147, 51, 234, 0.4);
+  background: rgba(var(--color-category-framework-rgb), 0.20);
+  border-color: rgba(var(--color-category-framework-rgb), 0.40);
 }
 
 /* Other/Uncategorized - Gray */
@@ -430,23 +430,23 @@
 
 /* Legend Color Dots */
 .legend-frontend {
-  background: #ff8c00;
+  background: var(--color-category-frontend);
 }
 
 .legend-backend {
-  background: #3b82f6;
+  background: var(--color-category-backend);
 }
 
 .legend-framework {
-  background: #9333ea;
+  background: var(--color-category-framework);
 }
 
 .legend-libraries {
-  background: #22c55e;
+  background: var(--color-category-libraries);
 }
 
 .legend-database {
-  background: #0ea5e9;
+  background: var(--color-category-database);
 }
 
 /* No Projects State */
