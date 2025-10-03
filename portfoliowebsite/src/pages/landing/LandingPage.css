@@ -1,48 +1,9 @@
-/* Landing Page Styles - Using Design Tokens */
-
-/* Global smooth scrolling */
-html {
-  scroll-behavior: smooth;
-  font-family: var(--font-family-primary);
-}
-
-body {
-  scroll-behavior: smooth;
-  font-family: var(--font-family-primary);
-  overflow-x: hidden;
-}
+/* Landing Page Layout */
 
 .main-container {
   width: 100%;
   min-height: 100vh;
-  max-width: 2048px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-  gap: var(--space-4);
-  padding: 0;
-  box-sizing: border-box;
-  background-color: var(--color-background-secondary);
-  font-family: var(--font-family-primary);
-  /* Offset for fixed header to avoid overlay */
-  padding-top: var(--header-height);
-}
-
-/* Header Styles */
-.header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: var(--z-index-fixed);
-  height: var(--header-height);
-  background: rgba(255, 243, 243, 0.8);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(255, 140, 0, 0.1);
-  box-shadow: var(--shadow-md);
-  width: 100%;
-  /* Ensure a new stacking context so sticky isn't affected by siblings */
-  isolation: isolate;
+  padding-top: 72px;
 }
 
 .header-content {
@@ -54,11 +15,12 @@ body {
   align-items: center;
 }
 
-/* Main Content Styles */
+/* Modern Main Content Styles */
 .main-content {
-  background-color: var(--color-primary-100);
-  padding: var(--space-2) clamp(var(--space-4), 5vw, var(--space-8));
-  min-height: calc(100vh - 200px);
+  flex: 1;
+  background-color: #fafafa;
+  padding: var(--space-8) clamp(var(--space-4), 5vw, var(--space-8));
+  min-height: calc(100vh - 72px);
   display: flex;
   flex-direction: column;
 }
@@ -66,15 +28,24 @@ body {
 .layout-section {
   display: flex;
   flex-direction: column;
-  margin-bottom: var(--space-12);
-  padding: clamp(var(--space-4), 4vw, var(--space-8));
-  background-color: var(--color-secondary-100);
-  border-radius: var(--border-radius-lg);
-  box-shadow: var(--shadow-sm);
+  margin-bottom: var(--space-8);
+  padding: clamp(var(--space-6), 4vw, var(--space-10));
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.08);
   width: 100%;
-  /* At least 80% of viewport height; grows automatically when content overflows */
-  min-height: 90vh;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: var(--space-8);
+  min-height: 600px;
   height: auto;
+  transition: box-shadow 200ms ease;
+}
+
+.layout-section:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .layout-section:first-child {
@@ -174,74 +145,32 @@ body {
   flex-direction: column;
 }
 
-.main-division-1 {
-  background-color: var(--color-background-primary);
-  padding: clamp(var(--space-3), 3vw, var(--space-6));
-  border-radius: var(--border-radius-lg);
-  border: 1px solid var(--color-border-primary);
-  box-shadow: var(--shadow-sm);
-  transition: var(--transition-shadow);
-  min-width: 0; /* Prevents grid overflow */
-}
-
-.main-division-1:hover {
-  box-shadow: var(--shadow-md);
-}
-
-.main-division-2 {
-  background-color: var(--color-background-primary);
-  padding: clamp(var(--space-3), 3vw, var(--space-6));
-  border-radius: var(--border-radius-lg);
-  border: 1px solid var(--color-border-primary);
-  box-shadow: var(--shadow-sm);
-  transition: var(--transition-shadow);
-  min-width: 0; /* Prevents grid overflow */
-}
-
-.main-division-2:hover {
-  box-shadow: var(--shadow-md);
-}
-
-.main-division-3 {
-  background-color: var(--color-background-primary);
-  padding: clamp(var(--space-3), 3vw, var(--space-6));
-  border-radius: var(--border-radius-lg);
-  border: 1px solid var(--color-border-primary);
-  box-shadow: var(--shadow-sm);
-  transition: var(--transition-shadow);
-  min-width: 0; /* Prevents grid overflow */
-}
-
-.main-division-3:hover {
-  box-shadow: var(--shadow-md);
-}
-
-.main-division-merged {
-  background-color: var(--color-background-primary);
-  padding: clamp(var(--space-3), 3vw, var(--space-6));
-  border-radius: var(--border-radius-lg);
-  border: 1px solid var(--color-border-primary);
-  box-shadow: var(--shadow-sm);
-  transition: var(--transition-shadow);
-  min-width: 0; /* Prevents grid overflow */
-}
-
-.main-division-merged:hover {
-  box-shadow: var(--shadow-md);
-}
-
+/* Modern Division Cards */
+.main-division-1,
+.main-division-2,
+.main-division-3,
+.main-division-merged,
 .main-division-all {
-  background-color: var(--color-background-primary);
-  padding: clamp(var(--space-3), 3vw, var(--space-6));
-  border-radius: var(--border-radius-lg);
-  border: 1px solid var(--color-border-primary);
-  box-shadow: var(--shadow-sm);
-  transition: var(--transition-shadow);
-  min-width: 0; /* Prevents grid overflow */
+  background-color: #f8f9fa;
+  padding: clamp(var(--space-4), 3vw, var(--space-8));
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: all 200ms ease;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
 }
 
+.main-division-1:hover,
+.main-division-2:hover,
+.main-division-3:hover,
+.main-division-merged:hover,
 .main-division-all:hover {
-  box-shadow: var(--shadow-md);
+  background-color: #ffffff;
+  border-color: rgba(0, 0, 0, 0.12);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
 }
 
 /* Grid utility classes */
@@ -410,4 +339,36 @@ img {
   max-width: 100%;
   height: auto;
   display: block;
+}
+
+/* Modern Debug Visualization */
+.main-container.debug-landing {
+  background: linear-gradient(135deg, #e5e7eb 0%, #d1d5db 100%);
+}
+
+.main-container.debug-landing .main-content {
+  background-color: rgba(59, 130, 246, 0.08);
+  outline: 1px dashed rgba(59, 130, 246, 0.3);
+}
+
+.main-container.debug-landing .layout-section {
+  background-color: rgba(16, 185, 129, 0.08);
+  outline: 1px dashed rgba(16, 185, 129, 0.4);
+}
+
+.main-container.debug-landing .main-division-1 {
+  background-color: rgba(244, 63, 94, 0.08);
+  border-color: rgba(244, 63, 94, 0.3);
+}
+
+.main-container.debug-landing .main-division-2 {
+  background-color: rgba(234, 179, 8, 0.08);
+  border-color: rgba(234, 179, 8, 0.3);
+}
+
+.main-container.debug-landing .main-division-3,
+.main-container.debug-landing .main-division-merged,
+.main-container.debug-landing .main-division-all {
+  background-color: rgba(99, 102, 241, 0.08);
+  border-color: rgba(99, 102, 241, 0.3);
 }

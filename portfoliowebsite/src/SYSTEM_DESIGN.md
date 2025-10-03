@@ -1,27 +1,31 @@
-# Portfolio Website - System Design & File Structure
+# Portfolio Website - System Design & Architecture
 
 ## 📋 Table of Contents
 - [Project Overview](#project-overview)
+- [Design Principles](#design-principles)
 - [Technology Stack](#technology-stack)
-- [Architecture Overview](#architecture-overview)
 - [File Structure](#file-structure)
 - [Component Architecture](#component-architecture)
-- [Routing System](#routing-system)
-- [Performance Optimizations](#performance-optimizations)
-- [Development Workflow](#development-workflow)
-- [Deployment](#deployment)
+- [Design System](#design-system)
+- [Development Guidelines](#development-guidelines)
+- [Performance & Optimization](#performance--optimization)
 
 ## 🎯 Project Overview
 
-The Portfolio Website is a modern, responsive personal portfolio built with React and TypeScript. The application serves as a comprehensive platform for showcasing professional work, skills, projects, and personal brand across multiple sections and interactive features.
+**Johanz David Tolentino's Portfolio** - A minimal, professional portfolio website showcasing software engineering expertise, projects, and professional journey.
+
+### Core Philosophy
+- **Minimalism First**: Clean, distraction-free design that emphasizes content
+- **Performance Obsessed**: Fast load times, smooth transitions, optimized assets
+- **Accessibility Focused**: WCAG compliant, keyboard navigation, reduced motion support
+- **Theme Aware**: Seamless light/dark mode with smooth transitions
 
 ### Key Features
-- **Professional Showcase**: Projects portfolio, work experience, skills demonstration
-- **Personal Brand**: About section, professional story, career journey, achievements
-- **Interactive Elements**: Project demos, skill visualizations, contact forms, animations
-- **Content Sections**: Home/Landing, About, Projects, Skills, Experience, Contact
-- **Responsive Design**: Mobile-first approach with seamless cross-device experience
-- **Performance Monitoring**: Built-in performance metrics and optimization tools
+- **Hero Section**: Dynamic role display with elegant flickering effect and rotating logo
+- **About Section**: Professional story, skills, and technical expertise
+- **Projects Showcase**: Curated portfolio of work and achievements
+- **Contact Section**: Direct communication channels
+- **Theme Toggle**: Smooth transitions between orange (light) and green (dark) themes
 
 ## 🛠 Technology Stack
 
@@ -56,84 +60,49 @@ src/
 │   ├── 📁 videos/                    # Video assets
 │   └── 📁 fonts/                     # Web fonts and typography
 ├── 📁 components/                    # Reusable React components
-│   ├── _component_common.css         # Shared component styles
 │   └── 📁 [component-name]/          # Component directory pattern
 │       ├── [ComponentName].tsx       # Component implementation
 │       ├── [ComponentName].css       # Component-specific styles
 │       └── index.ts                  # Export file (optional)
-├── 📁 _constants/                     # Application constants and configuration
+├── 📁 _constants/                    # Application constants and configuration
 │   ├── [category]_[name].ts          # Categorized constant files
 │   └── [feature]_[name].ts           # Feature-specific constants
 ├── 📁 _design-tokens/                # Design system and tokens
-│   ├── [category].css                # CSS custom properties by category
-│   └── [system].css                  # System-wide design tokens
-├── 📁 contexts/                      # React context providers
-│   └── [ContextName].tsx             # Context implementation
-├── 📁 data/                          # Static data and configuration
-│   ├── [feature]_[name].ts           # Feature-specific data files
-│   └── 📁 [category]/                # Categorized data directories
-│       └── [item].ts                 # Individual data items
+│   ├── colors.css                    # Colors (CSS variables)
+│   ├── typography.css                # Type ramps
+│   ├── spacing.css                   # Space scale
+│   ├── animations.css                # Keyframes + easing
+│   └── breakpoints.css               # Media query helpers
+├── 📁 contexts/                      # React context providers (optional)
+├── 📁 data/                          # Static data and configuration (optional)
 ├── 📁 hooks/                         # Custom React hooks
 │   ├── use[Feature].ts               # Feature-specific hooks
 │   └── use[Behavior].ts              # Behavior-focused hooks
-├── 📁 pages/                         # Route-based page components
-│   ├── _pages_common.css             # Shared page styles
-│   ├── 📁 [page-name]/               # Standalone pages
-│   │   ├── [PageName].tsx            # Page component
-│   │   └── [PageName].css            # Page styles
-│   ├── 📁 tab-[section]/             # Section pages (common pattern)
-│   │   └── 📁 [page-name]/           # Individual page directories
-│   │       ├── [PageName].tsx        # Page component
-│   │       └── [PageName].css        # Page styles
-│   ├── 📁 tab-academics/             # Academic section (special pattern example)
-│   │   ├── _[section]_common.css     # Section-specific shared styles (optional)
-│   │   ├── 📁 shared/                # Shared components and utilities
-│   │   │   ├── [SharedComponent].tsx # Shared component
-│   │   │   ├── [utility].ts           # Utility functions
-│   │   │   └── types.ts               # TypeScript interfaces
-│   │   └── 📁 [course-name]/         # Course data directories (data-only pattern)
-│   │       ├── activities.ts          # Course activities data
-│   │       ├── config.ts              # Course configuration
-│   │       └── events.ts              # Course events data
-│   └── 📁 [special-section]/         # Other special sections with unique patterns
-│       ├── [SpecialPattern].tsx      # Special pattern component
-│       └── [SpecialPattern].css      # Special pattern styles
-├── 📁 _dev/                          # Development and debugging tools
-│   ├── 📁 components/                # Development-only components
-│   └── 📁 utils/                     # Development utilities
-├── App.tsx                            # Main application component
-├── App.css                            # Main application styles
-├── index.css                          # Global styles
-├── main.tsx                           # Application entry point
-└── vite-env.d.ts                     # Vite environment types
+├── 📁 pages/                         # Route/page-level components
+│   └── 📁 landing/                   # Landing page (single-page structure)
+│       ├── LandingPage.tsx
+│       └── LandingPage.css
+├── index.css                         # Global styles (imports tokens + globals)
+├── index.jsx                         # Application entry point (Vite mounts here)
+└── vite-env.d.ts                     # Vite types (optional when TS is used)
 ```
 
 ### Organizational Principles
 
 #### **1. Directory Naming Patterns**
 - **`_` prefix**: Denotes shared/global resources (e.g., `_constants`, `_design-tokens`, `_pages_common.css`)
-- **`tab-[section]/`**: Groups related functionality into logical sections
-- **`[page-name]/`**: Individual page directories following consistent naming
+- **`components/[component-name]/`**: One component per folder
+- **`pages/[page-name]/`**: Individual page directories following consistent naming
 
 #### **2. Page Organization Patterns**
 The project follows these organizational principles:
 
 **A. Standard Page Pattern (Most Common)**
-- **Location**: `src/pages/[section]/[page-name]/` or `src/pages/[page-name]/`
+- **Location**: `src/pages/[page-name]/`
 - **Structure**: Each page has its own component and styles
 - **Pattern**: `[PageName].tsx` + `[PageName].css`
 - **Variations**: Can be standalone or within sections
 
-**B. Section-Based Organization**
-- **Location**: `src/pages/tab-[section]/[page-name]/`
-- **Structure**: Pages grouped by functional area
-- **Optional**: Section-specific shared styles (`_[section]_common.css`)
-- **Optional**: Shared components within section (`shared/` directory)
-
-**C. Special Pattern Sections**
-- **Location**: `src/pages/[special-section]/`
-- **Structure**: Unique organizational patterns for specific needs
-- **Examples**: Could be data-only, shared components, or other patterns
 
 #### **3. Naming Conventions**
 - **Components**: PascalCase for React components, kebab-case for directories
@@ -147,19 +116,6 @@ The project follows these organizational principles:
 [page-name]/
 ├── [PageName].tsx        # Main component
 └── [PageName].css        # Page styles
-```
-
-**Section with Shared Resources:**
-```
-tab-[section]/
-├── _[section]_common.css # Section-specific shared styles (optional)
-├── [page-name]/          # Individual page directories
-│   ├── [PageName].tsx    # Page component
-│   └── [PageName].css    # Page styles
-└── shared/                # Shared components within section (optional)
-    ├── [SharedComponent].tsx # Shared component
-    ├── [utility].ts       # Utility functions
-    └── types.ts           # TypeScript interfaces
 ```
 
 #### **5. Component Architecture Pattern**
@@ -268,17 +224,15 @@ ComponentName/
 ## 🛣️ Routing System
 
 ### Route Structure
-- **Landing Page**: `/` - Main homepage
-- **Academics**: `/college`, `/basic-education`, `/senior-high`, etc.
-- **Admissions**: `/admissions`, `/scholarships`
-- **Services**: `/canteen`, `/clinic`, `/library`, etc.
-- **TMTCS Info**: `/about-tmtc`, `/mission-vision`, `/history`, etc.
+- **Single-Page Layout**: `/` (primary route)
+- **Section Anchors**: `#about`, `#projects`, `#contact`
+- **Optional Future Routes**: `/projects`, `/projects/:id` if needed later
 
 ### Navigation Architecture
-- **Tab-based Navigation**: Main sections organized in tabs
-- **Breadcrumb Navigation**: Hierarchical navigation within sections
-- **Sidebar Navigation**: Secondary navigation for complex pages
-- **Mobile Navigation**: Responsive mobile drawer navigation
+- **Top Navigation Bar**: Links to section anchors (`#about`, `#projects`, `#contact`)
+- **Smooth Scrolling**: Anchor jumps with scroll-margin for header offset
+- **Active Link Highlight**: Update on scroll to reflect current section
+- **Mobile Navigation**: Responsive mobile drawer / hamburger menu
 
 ## ⚡ Performance Optimizations
 
@@ -365,12 +319,64 @@ ComponentName/
 - **Advanced Analytics**: Enhanced performance monitoring
 - **Mobile Applications**: Native mobile app development
 
-### Scalability Considerations
-- **Micro-frontend Architecture**: Component-based scaling
-- **API Integration**: Backend service integration
-- **Internationalization**: Multi-language support
-- **Progressive Web App**: PWA capabilities
+## 🧭 Design Principles (Modern)
 
----
+- **Content First**: Prioritize clarity. Hero copy and key CTAs must be readable, left-aligned on desktop, centered on small screens.
+- **Single Source of Truth**: Theme, spacing, colors live in `src/_design-tokens/`. Never hardcode hex values in component CSS.
+- **Atomic-ish Components**: One folder per component with `.tsx` + `.css` (and optional `index.ts`). Keep state local; extract hooks for reusable logic.
+- **Progressive Enhancement**: Works without animations; prefers-reduced-motion respected globally.
+- **Routing Simplicity**: Flat routes; pages own their styles; avoid deep component coupling.
+- **Strict Typing**: TS-first for components, props, and utilities.
 
-*This document reflects the current state of the Portfolio Website project as of the latest update.*
+## 🗂 Canonical File Structure (Actionable)
+
+This is the structure to follow. Adjust names to your feature, keep the pattern.
+
+```
+src/
+├── _constants/                  # Global constants & config
+│   ├── app_config.ts
+│   ├── debug_flags.ts
+│   └── language_categories.ts
+├── _design-tokens/              # Design system tokens (CSS custom properties)
+│   ├── colors.css
+│   ├── typography.css
+│   ├── spacing.css
+│   ├── animations.css
+│   └── breakpoints.css
+├── assets/                      # Static assets (imported by code)
+│   ├── images/
+│   ├── videos/
+│   └── fonts/
+├── components/                  # Reusable UI building blocks
+│   ├── navbar/
+│   │   ├── Navbar.tsx
+│   │   └── Navbar.css
+│   ├── hero/
+│   │   ├── Hero.tsx
+│   │   └── Hero.css
+│   ├── about/
+│   │   ├── About.tsx
+│   │   └── About.css
+│   ├── projects/
+│   │   ├── Projects.tsx
+│   │   └── Projects.css
+│   ├── contact/
+│   │   ├── Contact.tsx
+│   │   └── Contact.css
+│   └── mega-dropdown/
+│       ├── MegaDropdown.tsx
+│       └── MegaDropdown.css
+├── contexts/                    # React contexts (if/when needed)
+│   └── ThemeContext.tsx (example)
+├── data/                        # Static data & config by feature (optional)
+│   └── projects_data.ts (example)
+├── hooks/                       # Reusable hooks
+│   └── useAnimation.ts
+├── pages/                       # Route-level components
+│   └── landing/
+│       ├── LandingPage.tsx
+│       └── LandingPage.css
+├── index.css                    # Global CSS (imports tokens + global rules)
+├── index.jsx                    # App bootstrap/entry (mount React)
+└── vite-env.d.ts                # Vite types (if TypeScript emits)

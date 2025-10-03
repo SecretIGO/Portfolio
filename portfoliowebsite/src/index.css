@@ -24,9 +24,17 @@ body {
   font-size: var(--font-size-base);
   line-height: var(--line-height-normal);
   color: var(--color-text-primary);
-  background-color: var(--color-background-primary);
+  background-color: #fafafa;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Smooth theme change (simple, centralized) */
+@media (prefers-reduced-motion: no-preference) {
+  html, body, body * {
+    transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease,
+                fill 200ms ease, stroke 200ms ease;
+  }
 }
 
 /* Disable text selection and element dragging globally */
@@ -44,8 +52,20 @@ img, a, svg {
 
 /* Global component sizing tokens */
 :root {
-  /* Keep header height consistent for sticky positioning and dropdown offset */
-  --header-height: clamp(40px, 8vh, 60px);
+  /* Keep header height consistent for navbar positioning */
+  --header-height: 72px;
+  
+  /* Modern shadows */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.10);
+  --shadow-xl: 0 12px 32px rgba(0, 0, 0, 0.12);
+  
+  /* Modern transitions */
+  --transition-fast: 150ms ease;
+  --transition-normal: 200ms ease;
+  --transition-slow: 300ms ease;
 }
 
 code {
@@ -76,7 +96,7 @@ pre {
   color: var(--color-text-primary);
 }
 
-/* Scrollbar Styles */
+/* Modern Scrollbar Styles */
 html {
   overflow-y: scroll;
 }
@@ -84,13 +104,13 @@ html {
 /* Firefox scrollbar styling */
 * {
   scrollbar-width: thin;
-  scrollbar-color: #ff8c00 transparent;
+  scrollbar-color: var(--color-primary-500) transparent;
 }
 
 /* Webkit scrollbar styling */
 ::-webkit-scrollbar {
-  width: 4px;
-  height: 4px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
@@ -98,10 +118,10 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #ff8c00;
-  border-radius: 2px;
+  background: var(--color-primary-500);
+  border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #ff6b35;
+  background: var(--color-primary-600);
 }

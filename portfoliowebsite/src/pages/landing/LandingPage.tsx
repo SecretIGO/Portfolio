@@ -2,11 +2,14 @@ import React, { useCallback, useRef, useState } from 'react';
 import MegaDropdown from '../../components/mega-dropdown/MegaDropdown';
 import Navbar from '../../components/navbar/Navbar';
 import Footer from '../../components/footer/Footer';
+import Hero from '../../components/hero/Hero';
+import About from '../../components/about/About';
+import Projects from '../../components/projects/Projects';
 import './LandingPage.css';
 
 const LandingPage: React.FC = () => {
   const [isProjectsHovered, setIsProjectsHovered] = useState(false);
-  const collapseTimeoutRef = useRef<number | null>(null);
+  const collapseTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const handleMouseLeave = useCallback(() => {
     const timeout = setTimeout(() => {
@@ -31,65 +34,19 @@ const LandingPage: React.FC = () => {
         onMouseLeave={handleMouseLeave}
       />
 
-      {/* Header */}
-      <header className="grid-item header">
-        <div className="header-content">
-          <Navbar 
-            isProjectsHovered={isProjectsHovered}
-            onProjectsMouseEnter={handleMouseEnter}
-            onProjectsMouseLeave={handleMouseLeave}
-          />
-        </div>
-      </header>
+      <Navbar 
+        isProjectsHovered={isProjectsHovered}
+        onProjectsMouseEnter={handleMouseEnter}
+        onProjectsMouseLeave={handleMouseLeave}
+      />
 
       <div className="main-container">
-        <main className="grid-item main-content">
-          <section className="layout-section">
-            <h3 className="layout-title">Responsive Layout: Three Divisions</h3>
-            <div className="main-divisions-responsive">
-              <div className="main-division-1 flex-center-column">
-                <h4>Division 1</h4>
-                <p>Content for division 1</p>
-              </div>
-              <div className="main-division-2 flex-center-column">
-                <h4>Division 2</h4>
-                <p>Content for division 2</p>
-              </div>
-              <div className="main-division-3 flex-center-column">
-                <h4>Division 3</h4>
-                <p>Content for division 3</p>
-              </div>
-            </div>
-          </section>
-
-          <section className="layout-section">
-            <h3>Layout 3: Left and Middle Merged (3-1)</h3>
-            <div className="main-divisions-merged-left">
-              <div className="main-division-merged flex-center-column">
-                <h4>Merged Left & Middle</h4>
-                <p>Content for merged left and middle divisions</p>
-              </div>
-              <div className="main-division-3 flex-center-column">
-                <h4>Division 3</h4>
-                <p>Content for division 3</p>
-              </div>
-            </div>
-          </section>
-
-          <section className="layout-section">
-            <h3>Layout 4: All Merged (Single)</h3>
-            <div className="main-divisions-all-merged">
-              <div className="main-division-all flex-center-column">
-                <h4>All Divisions Merged</h4>
-                <p>Content for all merged divisions</p>
-              </div>
-            </div>
-          </section>
-        </main>
+        <Hero />
+        <About />
+        <Projects />
       </div>
-      <footer className="footer">
-        <Footer />
-      </footer>
+      
+      <Footer />
     </>
   );
 };

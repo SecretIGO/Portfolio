@@ -1,6 +1,26 @@
 import React, { useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
-import { visual, shockwaveColors } from '../footer/techyFooter.config';
+
+// Local minimal config (removed dependency on techyFooter)
+const visual = {
+  glowStdDeviation: 3.5,
+  shockwave: {
+    color: '#d97d3a',          // copper-like base
+    startStrokeWidth: 3,       // initial ring stroke width
+    growSpeed: 30,            // px per second
+    life: 0.9,                 // seconds
+  },
+};
+
+// Match project category colors used in MegaDropdown
+// Frontend (Coral), Backend (Navy), Framework (Violet), Libraries (Sage Green), Database (Cyan)
+const shockwaveColors: string[] = [
+  '#FF6B6B', // frontend
+  '#1E3A8A', // backend
+  '#8B5CF6', // framework
+  '#4ADE80', // libraries
+  '#06B6D4', // database
+];
 
 /**
  * MouseEffects
@@ -122,14 +142,6 @@ const MouseEffects: React.FC = () => {
 
     // Listen globally for interactions – pointerdown only to avoid duplicate (click) firing on mouseup
     window.addEventListener('pointerdown', onPointer as any, { passive: true });
-
-    // Small test ring after mount to verify overlay is rendering
-    const t = setTimeout(() => {
-      // eslint-disable-next-line no-console
-      console.log('[MouseEffects] test ring spawn');
-      spawnShockwave(Math.max(60, window.innerWidth - 80), 60);
-    }, 600);
-    (window as any).__mouseEffectsTestTimeout = t;
 
     return () => {
       cancelAnimationFrame(syncRaf);
