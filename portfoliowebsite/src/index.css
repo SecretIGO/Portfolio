@@ -13,9 +13,17 @@
   box-sizing: border-box;
 }
 
+/* Responsive header height token */
+@media (max-width: 480px) {
+  :root {
+    --header-height: 64px;
+  }
+}
+
 html {
   font-size: 16px;
   line-height: 1.5;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -29,6 +37,30 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Accessible skip link */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.skip-link:focus {
+  position: fixed;
+  left: var(--space-4);
+  top: calc(var(--header-height) + var(--space-2));
+  width: auto;
+  height: auto;
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-primary-600);
+  color: var(--color-text-inverse);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-md);
+  z-index: calc(var(--z-index-fixed) + 5);
+}
+
 /* Smooth theme change (simple, centralized) */
 @media (prefers-reduced-motion: no-preference) {
   html, body, body * {
@@ -37,16 +69,10 @@ body {
   }
 }
 
-/* Disable text selection and element dragging globally */
-html, body, #root, #app {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  -webkit-touch-callout: none; /* disable iOS callout */
-}
+/* Global interactions: keep selection enabled by default for accessibility */
+/* Use targeted rules (e.g., in _pages_common.css img{}) for selection/drag prevention */
 
-img, a, svg {
+img {
   -webkit-user-drag: none; /* non-standard; supported in WebKit/Blink */
 }
 
@@ -54,6 +80,13 @@ img, a, svg {
 :root {
   /* Keep header height consistent for navbar positioning */
   --header-height: 72px;
+  
+  /* Border Radii */
+  --border-radius-sm: 6px;
+  --border-radius-md: 10px;
+  --border-radius-lg: 12px;
+  --border-radius-xl: 16px;
+  --border-radius-full: 9999px;
   
   /* Modern shadows */
   --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);

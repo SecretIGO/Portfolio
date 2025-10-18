@@ -1,23 +1,39 @@
 /* Modern Shared Page Styles */
 
+/* Global: prevent images from being draggable or selectable (desktop + mobile) */
+img {
+  -webkit-user-drag: none;     /* Safari/Chrome */
+  -webkit-touch-callout: none; /* iOS: disable callout (Save Image, etc.) */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
+}
+
+/* Ensure anchored sections land below fixed navbar */
+section[id] {
+  scroll-margin-top: var(--header-height);
+}
+
 /* Page Container */
 .page-container {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  padding-top: 72px;
+  padding-top: var(--header-height);
 }
 
 .page-header {
   padding: var(--space-8) 0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-  background-color: #ffffff;
+  border-bottom: 1px solid var(--color-border-primary);
+  background-color: var(--color-background-primary);
 }
 
 .page-title {
   font-size: var(--font-size-4xl);
   font-weight: var(--font-weight-bold);
-  color: #1a1a1a;
+  color: var(--color-text-primary);
   margin: 0;
   text-align: center;
   letter-spacing: -0.02em;
@@ -25,7 +41,7 @@
 
 .page-subtitle {
   font-size: var(--font-size-lg);
-  color: #666666;
+  color: var(--color-text-secondary);
   margin: var(--space-3) 0 0 0;
   text-align: center;
   line-height: 1.6;
@@ -39,10 +55,10 @@
 .page-section {
   margin-bottom: var(--space-12);
   padding: var(--space-8);
-  background-color: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  background-color: var(--color-background-primary);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-border-primary);
 }
 
 .page-section:last-child {
@@ -52,7 +68,7 @@
 .section-title {
   font-size: var(--font-size-3xl);
   font-weight: var(--font-weight-bold);
-  color: #1a1a1a;
+  color: var(--color-text-primary);
   margin: 0 0 var(--space-4) 0;
   text-align: center;
   letter-spacing: -0.01em;
@@ -60,7 +76,7 @@
 
 .section-subtitle {
   font-size: var(--font-size-lg);
-  color: #666666;
+  color: var(--color-text-secondary);
   margin: 0 0 var(--space-8) 0;
   text-align: center;
   max-width: 700px;
@@ -197,6 +213,10 @@
 }
 
 @media (max-width: 768px) {
+  .page-container {
+    padding-top: 64px;
+  }
+  
   .page-content {
     padding: var(--padding-lg) 0;
   }
