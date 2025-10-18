@@ -8,7 +8,7 @@ export const DEBUG_FLAGS = {
     hideCard: false,
   },
   ui: {
-    all: true,
+    all: false,
     button: false,
     iconButton: false,
     container: false,
