@@ -387,14 +387,14 @@
   .navbar-cta {
     display: none;
   }
+
+  .navbar-actions {
+    display: none;
+  }
   
   .mobile-menu-toggle {
     display: flex;
   }
-
-  .mobile-social-link {
-    display: none;
-  } 
   
   .mobile-menu {
     display: flex;
