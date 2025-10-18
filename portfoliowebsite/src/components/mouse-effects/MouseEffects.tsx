@@ -1,33 +1,24 @@
 import React, { useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 
-// Local minimal config (removed dependency on techyFooter)
 const visual = {
   glowStdDeviation: 3.5,
   shockwave: {
-    color: '#d97d3a',          // copper-like base
-    startStrokeWidth: 3,       // initial ring stroke width
-    growSpeed: 30,            // px per second
-    life: 0.9,                 // seconds
+    color: '#d97d3a',
+    startStrokeWidth: 3,
+    growSpeed: 30,
+    life: 0.9,
   },
 };
 
-// Match project category colors used in MegaDropdown
-// Frontend (Coral), Backend (Navy), Framework (Violet), Libraries (Sage Green), Database (Cyan)
 const shockwaveColors: string[] = [
-  '#FF6B6B', // frontend
-  '#1E3A8A', // backend
-  '#8B5CF6', // framework
-  '#4ADE80', // libraries
-  '#06B6D4', // database
+  '#FF6B6B',
+  '#1E3A8A',
+  '#8B5CF6',
+  '#4ADE80',
+  '#06B6D4',
 ];
 
-/**
- * MouseEffects
- * - Full-screen overlay that listens for clicks anywhere on the page
- * - Spawns shockwave rings at the click location using the same tuning as TechyFooterBackground
- * - No pointer capture; it does not interfere with normal interactions
- */
 const MouseEffects: React.FC = () => {
   const svgRef = useRef<SVGSVGElement | null>(null);
   const groupRef = useRef<SVGGElement | null>(null);
@@ -37,16 +28,15 @@ const MouseEffects: React.FC = () => {
     el: SVGCircleElement;
     x: number;
     y: number;
-    r: number;      // current radius
-    vr: number;     // radius growth speed px/s
-    age: number;    // seconds
-    life: number;   // seconds
-    sw: number;     // initial stroke width
+    r: number;
+    vr: number;
+    age: number;
+    life: number;
+    sw: number;
   };
   const effectsRef = useRef<Effect[]>([]);
   const lastRef = useRef<number>(0);
 
-  // Keep SVG viewBox synced to viewport
   const syncViewBox = () => {
     const svg = svgRef.current;
     if (!svg) return;
@@ -67,12 +57,11 @@ const MouseEffects: React.FC = () => {
     el.setAttribute('fill', 'none');
     const ringColor = shockwaveColors[(Math.random() * shockwaveColors.length) | 0] || visual.shockwave.color;
     el.setAttribute('stroke', ringColor);
-    // Make the ring more visible globally
+
     const sw = Math.max(visual.shockwave.startStrokeWidth, 4);
     el.setAttribute('stroke-width', String(sw));
     el.setAttribute('opacity', '1');
     el.setAttribute('filter', 'url(#mouseLightGlow)');
-    // Use normal blend mode for better visibility on light backgrounds
     el.setAttribute('style', 'mix-blend-mode: normal;');
     group.appendChild(el);
 
@@ -89,13 +78,10 @@ const MouseEffects: React.FC = () => {
   };
 
   const onPointer = (e: MouseEvent | PointerEvent | TouchEvent) => {
-    // Use viewport coords directly: viewBox == window size (synced), so 1:1 mapping
-    // Support both mouse and pointer events
     const anyE = e as any;
     const x = anyE.clientX ?? (anyE.touches && anyE.touches[0]?.clientX);
     const y = anyE.clientY ?? (anyE.touches && anyE.touches[0]?.clientY);
     if (typeof x === 'number' && typeof y === 'number') {
-      // eslint-disable-next-line no-console
       console.log('[MouseEffects] pointerdown/click @', x, y);
       spawnShockwave(x, y);
     }
@@ -127,20 +113,15 @@ const MouseEffects: React.FC = () => {
   };
 
   useEffect(() => {
-    // eslint-disable-next-line no-console
     console.log('[MouseEffects] mounted');
     const onResize = () => syncViewBox();
-    // Defer initial sync to ensure the SVG ref is attached (StrictMode safe)
     const syncRaf = requestAnimationFrame(syncViewBox);
     window.addEventListener('resize', onResize);
 
-    // Ensure initial viewBox sync both immediately and in next frame
     syncViewBox();
-    // Start RAF loop
     lastRef.current = performance.now();
     rafRef.current = requestAnimationFrame(animate);
 
-    // Listen globally for interactions – pointerdown only to avoid duplicate (click) firing on mouseup
     window.addEventListener('pointerdown', onPointer as any, { passive: true });
 
     return () => {
@@ -152,12 +133,10 @@ const MouseEffects: React.FC = () => {
         clearTimeout((window as any).__mouseEffectsTestTimeout);
         delete (window as any).__mouseEffectsTestTimeout;
       }
-      // cleanup leftover circles
       const effects = effectsRef.current;
       for (let i = effects.length - 1; i >= 0; i--) effects[i].el.remove();
       effectsRef.current.length = 0;
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return createPortal(
