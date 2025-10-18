@@ -1,47 +1,48 @@
 import React from 'react';
 import './About.css';
 import { Code2, Palette, Rocket, Users } from 'lucide-react';
+import Container from '../../_ui_library/container/Container';
+import Section from '../../_ui_library/section/Section';
 
 const About: React.FC = () => {
   const skills = [
     {
       icon: <Code2 size={24} />,
       title: 'Full-Stack Development',
-      description: 'Building scalable web applications with React, TypeScript, Node.js, and modern frameworks.',
+      description: 'test look',
     },
     {
       icon: <Palette size={24} />,
       title: 'UI/UX Design',
-      description: 'Creating intuitive and beautiful user interfaces with attention to detail and user experience.',
+      description: 'designing sht',
     },
     {
       icon: <Rocket size={24} />,
-      title: 'Cloud & DevOps',
-      description: 'Deploying and managing applications on AWS, Azure, and implementing CI/CD pipelines.',
+      title: 'Understanding Concepts',
+      description: 'concepts sht',
     },
     {
       icon: <Users size={24} />,
       title: 'Team Collaboration',
-      description: 'Working effectively with cross-functional teams using Agile methodologies and best practices.',
+      description: 'basically doing my best',
     },
   ];
 
   const technologies = [
     'React', 'TypeScript', 'Node.js', 'Python',
-    'PostgreSQL', 'MongoDB', 'AWS', 'Docker',
-    'Git', 'REST APIs', 'GraphQL', 'Tailwind CSS'
+    'PostgreSQL', 'MongoDB', 'Firebase', 'Docker',
+    'Git', 'REST APIs', 'Kotlin', 'HTML', 'CSS'
   ];
 
   return (
-    <section className="about" id="about">
-      <div className="about-container">
+    <Section className="about" id="about">
+      <Container max="2xl" padding="md">
         <div className="about-header">
           <span className="section-label">About Me</span>
           <h2 className="section-title">Building Digital Experiences</h2>
           <p className="section-description">
             I'm a passionate full-stack developer with a focus on creating elegant, 
-            performant, and user-friendly web applications. With several years of experience, 
-            I bring ideas to life through clean code and thoughtful design.
+            performant, and user-friendly web applications.
           </p>
         </div>
 
@@ -65,8 +66,8 @@ const About: React.FC = () => {
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </Container>
+    </Section>
   );
 };
 
