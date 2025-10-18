@@ -7,4 +7,13 @@ export const DEBUG_FLAGS = {
     logActiveTransitions: false,
     hideCard: false,
   },
+  ui: {
+    all: true,
+    button: false,
+    iconButton: false,
+    container: false,
+    card: false,
+    tag: false,
+    section: false,
+  },
 } as const;
