@@ -15,7 +15,10 @@ export interface TagProps extends React.HTMLAttributes<HTMLElement> {
   radius?: TagRadius;
   leftIcon?: IconType;
   rightIcon?: IconType;
+  leftIconName?: string; // For DevIcons
+  rightIconName?: string; // For DevIcons
   iconSize?: number | string;
+  iconColor?: string; // Optional color for the icon
 }
 
 const Tag: React.FC<TagProps> = ({
@@ -26,7 +29,10 @@ const Tag: React.FC<TagProps> = ({
   radius = 'full',
   leftIcon: LeftIcon,
   rightIcon: RightIcon,
+  leftIconName,
+  rightIconName,
   iconSize = 14,
+  iconColor,
   children,
   ...rest
 }) => {
@@ -45,20 +51,41 @@ const Tag: React.FC<TagProps> = ({
     .join(' ');
 
   const debugAttrs = debugEnabled ? { 'data-debug': 'tag', 'data-debug-label': `Tag(${variant},${size})` } : {};
+  
+  // Inline styles for the icon
+  const iconStyle = {
+    fontSize: typeof iconSize === 'number' ? `${iconSize}px` : iconSize,
+    color: iconColor,
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  };
+
+  const renderIcon = (iconName?: string, IconComponent?: IconType, position: 'left' | 'right' = 'left') => {
+    if (iconName) {
+      return (
+        <span className={`ui-tag__icon ui-tag__icon--${position}`} style={iconStyle} aria-hidden="true">
+          <i className={`devicon-${iconName.toLowerCase()}-plain`}></i>
+        </span>
+      );
+    }
+    
+    if (IconComponent) {
+      return (
+        <span className={`ui-tag__icon ui-tag__icon--${position}`} style={iconStyle} aria-hidden="true">
+          <IconComponent size={iconSize} />
+        </span>
+      );
+    }
+    
+    return null;
+  };
 
   return (
     <Component className={classes} {...debugAttrs} {...rest}>
-      {LeftIcon ? (
-        <span className="ui-tag__icon ui-tag__icon--left" aria-hidden="true">
-          <LeftIcon size={iconSize} />
-        </span>
-      ) : null}
+      {renderIcon(leftIconName, LeftIcon, 'left')}
       <span className="ui-tag__label">{children}</span>
-      {RightIcon ? (
-        <span className="ui-tag__icon ui-tag__icon--right" aria-hidden="true">
-          <RightIcon size={iconSize} />
-        </span>
-      ) : null}
+      {renderIcon(rightIconName, RightIcon, 'right')}
     </Component>
   );
 };

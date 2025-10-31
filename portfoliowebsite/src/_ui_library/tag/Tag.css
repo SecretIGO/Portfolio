@@ -11,6 +11,15 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  line-height: 1; /* Ensures proper vertical alignment */
+}
+
+.ui-tag__icon--left {
+  margin-right: var(--space-1);
+}
+
+.ui-tag__icon--right {
+  margin-left: var(--space-1);
 }
 
 .ui-tag__label {
@@ -20,21 +29,24 @@
 
 /* Sizes */
 .ui-tag--sm {
-  padding: 0 var(--padding-sm);
-  height: 24px;
+  padding: var(--space-1) var(--space-3);
+  height: auto;
   font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
 }
 
 .ui-tag--md {
-  padding: 0 var(--padding-md);
-  height: 28px;
+  padding: var(--space-2) var(--space-3);
+  height: auto;
   font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
 }
 
 .ui-tag--lg {
-  padding: 0 var(--padding-lg);
-  height: 32px;
-  font-size: var(--font-size-base);
+  padding: var(--space-2) var(--space-4);
+  height: auto;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
 }
 
 /* Radii */
@@ -62,9 +74,16 @@
 }
 
 .ui-tag--soft {
-  background: var(--color-primary-100);
-  color: var(--color-primary-800);
-  border-color: transparent;
+  background: rgba(0, 0, 0, 0.04);
+  color: #4a4a4a;
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+.ui-tag--soft:hover {
+  background: var(--color-primary-50);
+  color: var(--color-primary-700);
+  border-color: var(--color-primary-200);
+  transform: translateY(-1px);
 }
 
 .ui-tag--outline {
@@ -81,8 +100,15 @@
 
 /* Dark tweaks */
 :root[data-theme="dark"] .ui-tag--soft {
-  background: rgba(255, 255, 255, 0.08);
-  color: #e5e5e5;
+  background: rgba(255, 255, 255, 0.06);
+  color: #d0d0d0;
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+:root[data-theme="dark"] .ui-tag--soft:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--color-primary-400);
+  border-color: var(--color-primary-400);
 }
 
 .ui-tag.is-debug {
