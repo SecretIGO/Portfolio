@@ -101,6 +101,7 @@
     --color-primary-800: #065f46;  /* emerald-800 */
     --color-primary-900: #064e3b;  /* emerald-900 */
 
+    --color-background-primary: #0f0f0f;
     --color-text-primary: #ffffff;
   }
 }
@@ -118,5 +119,6 @@
   --color-primary-800: #065f46;
   --color-primary-900: #064e3b;
 
+  --color-background-primary: #0f0f0f;
   --color-text-primary: #ffffff;
 }
