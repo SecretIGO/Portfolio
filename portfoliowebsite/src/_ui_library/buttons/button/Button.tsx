@@ -1,6 +1,6 @@
 import React from 'react';
 import './Button.css';
-import { DEBUG_FLAGS } from '../../_constants/debug_flags';
+import { DEBUG_FLAGS } from '../../../_constants/debug_flags';
 
 export type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'link';
 export type ButtonSize = 'sm' | 'md' | 'lg';

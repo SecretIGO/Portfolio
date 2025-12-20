@@ -1,6 +1,6 @@
 import React from 'react';
 import './IconButton.css';
-import { DEBUG_FLAGS } from '../../_constants/debug_flags';
+import { DEBUG_FLAGS } from '../../../_constants/debug_flags';
 
 export type IconButtonVariant = 'primary' | 'secondary' | 'ghost';
 export type IconButtonSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
