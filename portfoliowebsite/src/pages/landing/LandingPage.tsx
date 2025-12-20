@@ -40,11 +40,11 @@ const LandingPage: React.FC = () => {
         onProjectsMouseLeave={handleMouseLeave}
       />
 
-      <div className="main-container">
+      <main id="main" className="page-container main-container" role="main">
         <Hero />
         <About />
         <Projects />
-      </div>
+      </main>
       
       <Footer />
     </>

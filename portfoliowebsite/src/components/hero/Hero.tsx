@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import './Hero.css';
 import { ArrowRight, Github, Linkedin, Mail } from 'lucide-react';
+import Button from '../../_ui_library/buttons/button/Button';
+import IconButton from '../../_ui_library/buttons/icon-button/IconButton';
+import { SOCIALS } from '../../_constants/navigation';
+import Section from '../../_ui_library/section/Section';
+import Container from '../../_ui_library/container/Container';
 
 const Hero: React.FC = () => {
   const roles = ['Software Engineer', 'Developer', 'Problem Solver', 'Creative Designer'];
@@ -14,68 +19,108 @@ const Hero: React.FC = () => {
   }, [roles.length]);
 
   return (
-    <section className="hero" id="home">
-      {/* Subtle Background */}
+    <Section className="hero" id="home">
       <div className="hero-background">
         <div className="gradient-accent"></div>
       </div>
 
-      <div className="hero-container">
+      <Container
+        className="hero-container"
+        max="2xl"
+        padding="responsive"
+        display="flex"
+        direction="row"
+        justify="between"
+        align="center"
+        gap="xl"
+      >
         <div className="hero-content">
           <div className="hero-badge">
             <span className="badge-dot"></span>
             <span>Open to opportunities</span>
             <div className="badge-shine"></div>
           </div>
-          
+
           <h1 className="hero-title">
             <span className="hero-name">Johanz David Tolentino</span>
             <span key={currentRole} className="flickering-role">
               {roles[currentRole]}
             </span>
           </h1>
-          
+
           <p className="hero-description">
-            I craft elegant digital experiences through clean code and thoughtful design. 
+            I craft elegant digital experiences through clean code and thoughtful design.
             Specializing in modern web technologies, cloud architecture, and scalable solutions.
           </p>
-          
+
           <div className="hero-actions">
-            <a href="#contact" className="hero-cta primary">
-              <span>Let's Talk</span>
-              <ArrowRight size={18} />
-              <div className="cta-shine"></div>
-            </a>
-            <a href="#projects" className="hero-cta secondary">
-              <span>View Work</span>
-            </a>
+            <Button
+              href="#contact"
+              variant="primary"
+              size="lg"
+              radius="lg"
+              rightIcon={ArrowRight}
+              animation="hover-lift"
+              className="hero-cta"
+              aria-label="Let's Talk"
+            >
+              Let's Talk
+            </Button>
+
+            <Button
+              href="#projects"
+              variant="secondary"
+              size="lg"
+              radius="lg"
+              className="hero-cta"
+              aria-label="View Work"
+            >
+              View Work
+            </Button>
           </div>
-          
+
           <div className="hero-social">
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="social-link" aria-label="GitHub">
-              <Github size={20} />
-            </a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="social-link" aria-label="LinkedIn">
-              <Linkedin size={20} />
-            </a>
-            <a href="mailto:johanzdavidtolentino@gmail.com" className="social-link" aria-label="Email">
-              <Mail size={20} />
-            </a>
+            <IconButton
+              variant='secondary'
+              icon={Github}
+              href={SOCIALS.find((social) => social.name === 'github')?.href}
+              target="_blank"
+              size='xl'
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+              animation='hover-lift' />
+            <IconButton
+              variant='secondary'
+              icon={Linkedin}
+              href={SOCIALS.find((social) => social.name === 'linkedin')?.href}
+              target="_blank"
+              size='xl'
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+              animation='hover-lift' />
+            <IconButton
+              variant='secondary'
+              icon={Mail}
+              href="mailto:johanzdavidtolentino@gmail.com"
+              target="_blank"
+              size='xl'
+              aria-label="Email"
+              animation='hover-lift' />
           </div>
         </div>
-        
+
         <div className="hero-visual">
           <div className="hero-image-wrapper">
             <div className="image-backdrop"></div>
-            <img 
-              src="/images/SecretIGO_ico.png" 
-              alt="Johanz David Tolentino" 
+            <img
+              src="/images/SecretIGO_ico.png"
+              alt="Johanz David Tolentino"
               className="hero-image"
             />
           </div>
         </div>
-      </div>
-    </section>
+      </Container>
+    </Section>
   );
 };
 

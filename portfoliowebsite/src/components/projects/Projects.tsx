@@ -1,6 +1,8 @@
 import React from 'react';
 import './Projects.css';
 import { ExternalLink, Github } from 'lucide-react';
+import Section from '../../_ui_library/section/Section';
+import Container from '../../_ui_library/container/Container';
 
 interface Project {
   id: number;
@@ -73,8 +75,8 @@ const Projects: React.FC = () => {
   ];
 
   return (
-    <section className="projects" id="projects">
-      <div className="projects-container">
+    <Section className="projects" id="projects">
+      <Container className="projects-container" max="2xl" padding="md">
         <div className="projects-header">
           <span className="section-label">Portfolio</span>
           <h2 className="section-title">Featured Projects</h2>
@@ -95,8 +97,8 @@ const Projects: React.FC = () => {
             Want to see more? Let's talk
           </a>
         </div>
-      </div>
-    </section>
+      </Container>
+    </Section>
   );
 };
 

@@ -1,8 +1,18 @@
 import React from 'react';
 import './Footer.css';
 import { Mail, Phone, MapPin, Twitter, Facebook, Linkedin, Github } from 'lucide-react';
+import { PAGE_NAV, SITE_SECTIONS, SOCIALS } from '../../_constants/navigation';
+import IconButton from '../../_ui_library/buttons/icon-button/IconButton';
 
 const Footer: React.FC = () => {
+
+  const socialIconMap: Record<string, React.ComponentType<{ size?: number | string; className?: string }>> = {
+    twitter: Twitter,
+    facebook: Facebook,
+    linkedin: Linkedin,
+    github: Github,
+  };
+
   return (
     <footer className="footer" role="contentinfo">
       <div className="footer-container">
@@ -15,22 +25,27 @@ const Footer: React.FC = () => {
               <h2 className="brand-name">SecretIGO</h2>
             </div>
             <p className="brand-description">
-              Full-stack software engineer specializing in modern web technologies, 
+              Full-stack software engineer specializing in modern web technologies,
               cloud architecture, and scalable solutions.
             </p>
             <div className="social-links">
-              <a href="#twitter" className="social-link" aria-label="Twitter">
-                <Twitter size={20} />
-              </a>
-              <a href="#facebook" className="social-link" aria-label="Facebook">
-                <Facebook size={20} />
-              </a>
-              <a href="#linkedin" className="social-link" aria-label="LinkedIn">
-                <Linkedin size={20} />
-              </a>
-              <a href="#github" className="social-link" aria-label="GitHub">
-                <Github size={20} />
-              </a>
+              {SOCIALS.map(s => {
+                const Icon = socialIconMap[s.name] || Github;
+                const label = s.name.charAt(0).toUpperCase() + s.name.slice(1);
+                return (
+                  <IconButton
+                    key={s.name}
+                    href={s.href}
+                    variant='secondary'
+                    radius='sm'
+                    icon={Icon}
+                    size='md'
+                    rel="noopener noreferrer"
+                    aria-label={label}
+                    animation='hover-lift'
+                  />
+                );
+              })}
             </div>
           </div>
 
@@ -38,11 +53,11 @@ const Footer: React.FC = () => {
           <div className="footer-section">
             <h3 className="footer-heading">Navigation</h3>
             <ul className="footer-links">
-              <li><a href="#recognitions">Recognitions</a></li>
-              <li><a href="#awards">Awards</a></li>
-              <li><a href="#projects">Projects</a></li>
-              <li><a href="#devops">Experiments</a></li>
-              <li><a href="#uhh">uhh</a></li>
+              {SITE_SECTIONS.map(item => (
+                <li key={item.id}>
+                  <a href={item.href}>{item.label}</a>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -50,9 +65,11 @@ const Footer: React.FC = () => {
           <div className="footer-section">
             <h3 className="footer-heading">Page Navigation</h3>
             <ul className="footer-links">
-              <li><a href="#about">Home</a></li>
-              <li><a href="#projects">About</a></li>
-              <li><a href="#blog">Projects</a></li>
+              {PAGE_NAV.map(item => (
+                <li key={item.id}>
+                  <a href={item.href}>{item.label}</a>
+                </li>
+              ))}
             </ul>
           </div>
 

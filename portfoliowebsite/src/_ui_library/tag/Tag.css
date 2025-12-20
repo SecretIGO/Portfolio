@@ -1,0 +1,117 @@
+.ui-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  border: 1px solid transparent;
+  transition: var(--transition-normal);
+  color: var(--color-text-primary);
+}
+
+.ui-tag__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1; /* Ensures proper vertical alignment */
+}
+
+.ui-tag__icon--left {
+  margin-right: var(--space-1);
+}
+
+.ui-tag__icon--right {
+  margin-left: var(--space-1);
+}
+
+.ui-tag__label {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Sizes */
+.ui-tag--sm {
+  padding: var(--space-1) var(--space-3);
+  height: auto;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+}
+
+.ui-tag--md {
+  padding: var(--space-2) var(--space-3);
+  height: auto;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+}
+
+.ui-tag--lg {
+  padding: var(--space-2) var(--space-4);
+  height: auto;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+}
+
+/* Radii */
+.ui-tag--radius-sm {
+  border-radius: var(--border-radius-sm);
+}
+
+.ui-tag--radius-md {
+  border-radius: var(--border-radius-md);
+}
+
+.ui-tag--radius-lg {
+  border-radius: var(--border-radius-lg);
+}
+
+.ui-tag--radius-full {
+  border-radius: var(--border-radius-full);
+}
+
+/* Variants */
+.ui-tag--solid {
+  background: var(--color-primary-600);
+  color: #fff;
+  border-color: var(--color-primary-600);
+}
+
+.ui-tag--soft {
+  background: rgba(0, 0, 0, 0.04);
+  color: #4a4a4a;
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+.ui-tag--soft:hover {
+  background: var(--color-primary-50);
+  color: var(--color-primary-700);
+  border-color: var(--color-primary-200);
+  transform: translateY(-1px);
+}
+
+.ui-tag--outline {
+  background: transparent;
+  color: var(--color-text-primary);
+  border-color: var(--color-border-primary);
+}
+
+.ui-tag--ghost {
+  background: transparent;
+  color: var(--color-text-primary);
+  border-color: transparent;
+}
+
+/* Dark tweaks */
+:root[data-theme="dark"] .ui-tag--soft {
+  background: rgba(255, 255, 255, 0.06);
+  color: #d0d0d0;
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+:root[data-theme="dark"] .ui-tag--soft:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--color-primary-400);
+  border-color: var(--color-primary-400);
+}
+
+.ui-tag.is-debug {
+  outline: 1px dashed var(--color-error);
+  position: relative;
+}
