@@ -1,0 +1,147 @@
+.ui-container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.ui-container--sm {
+    max-width: var(--container-sm);
+}
+
+.ui-container--md {
+    max-width: var(--container-md);
+}
+
+.ui-container--lg {
+    max-width: var(--container-lg);
+}
+
+.ui-container--xl {
+    max-width: var(--container-xl);
+}
+
+.ui-container--2xl {
+    max-width: var(--container-2xl);
+}
+
+.ui-container--full {
+    max-width: none;
+}
+
+.ui-container--p-none {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.ui-container--p-sm {
+    padding-left: var(--padding-sm);
+    padding-right: var(--padding-sm);
+}
+
+.ui-container--p-md {
+    padding-left: var(--padding-md);
+    padding-right: var(--padding-md);
+}
+
+.ui-container--p-lg {
+    padding-left: var(--padding-lg);
+    padding-right: var(--padding-lg);
+}
+
+/* Responsive horizontal padding following project principles */
+.ui-container--p-responsive {
+    padding-left: clamp(var(--space-4), 4vw, var(--space-8));
+    padding-right: clamp(var(--space-4), 4vw, var(--space-8));
+}
+
+/* Layout utilities */
+.ui-container--display-flex {
+    display: flex;
+}
+
+.ui-container--display-grid {
+    display: grid;
+}
+
+.ui-container--flex-row {
+    flex-direction: row;
+}
+
+.ui-container--flex-column {
+    flex-direction: column;
+}
+
+.ui-container--flex-row-reverse {
+    flex-direction: row-reverse;
+}
+
+.ui-container--flex-column-reverse {
+    flex-direction: column-reverse;
+}
+
+/* Flex alignment utilities */
+.ui-container--justify-start {
+    justify-content: flex-start;
+}
+
+.ui-container--justify-center {
+    justify-content: center;
+}
+
+.ui-container--justify-end {
+    justify-content: flex-end;
+}
+
+.ui-container--justify-between {
+    justify-content: space-between;
+}
+
+.ui-container--justify-around {
+    justify-content: space-around;
+}
+
+.ui-container--justify-evenly {
+    justify-content: space-evenly;
+}
+
+.ui-container--items-start {
+    align-items: flex-start;
+}
+
+.ui-container--items-center {
+    align-items: center;
+}
+
+.ui-container--items-end {
+    align-items: flex-end;
+}
+
+.ui-container--items-stretch {
+    align-items: stretch;
+}
+
+.ui-container--items-baseline {
+    align-items: baseline;
+}
+
+/* Gaps */
+.ui-container--gap-sm {
+    gap: var(--space-4);
+}
+
+.ui-container--gap-md {
+    gap: var(--space-6);
+}
+
+.ui-container--gap-lg {
+    gap: var(--space-8);
+}
+
+.ui-container--gap-xl {
+    gap: var(--space-12);
+}
+
+.ui-container.is-debug {
+    outline: 1px dashed var(--color-error);
+    position: relative;
+}
