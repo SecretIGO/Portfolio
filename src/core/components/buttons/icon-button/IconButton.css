@@ -1,4 +1,4 @@
-/* Reusable Icon Button */
+@import '../buttons_common.css';
 
 .ui-icon-btn {
     display: inline-flex;
@@ -18,7 +18,6 @@
     pointer-events: none;
 }
 
-/* Sizes */
 .ui-icon-btn--xs {
     width: 28px;
     height: 28px;
@@ -62,26 +61,10 @@
 }
 
 /* Variants */
-.ui-icon-btn--primary {
-    background: linear-gradient(135deg, var(--color-primary-600) 0%, var(--color-primary-700) 100%);
-    border-color: var(--color-primary-600);
-    color: #ffffff;
-    box-shadow: var(--shadow-sm);
-}
-
-.ui-icon-btn--primary:hover {
-    box-shadow: var(--shadow-md);
-    transform: translateY(-1px);
-}
-
 .ui-icon-btn--secondary {
-    background: #ffffff;
+    background: var(--color-background-primary);
     border-color: var(--color-border-primary);
     color: var(--color-text-primary);
-}
-
-.ui-icon-btn--secondary:hover {
-    background: var(--color-secondary-100);
 }
 
 .ui-icon-btn--ghost {
@@ -90,37 +73,14 @@
     border-color: transparent;
 }
 
-.ui-icon-btn--ghost:hover {
-    background: var(--color-secondary-100);
-}
-
 /* Loading spinner */
 .ui-icon-btn.is-loading {
     position: relative;
 }
 
 .ui-icon-btn__spinner {
-    position: absolute;
     inset: 0;
     margin: auto;
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    border: 2px solid rgba(255, 255, 255, 0.5);
-    border-top-color: #fff;
-    animation: spin var(--animation-duration-slow) var(--ease-linear) infinite;
-}
-
-@keyframes spin {
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-/* Simple hover animations */
-.ui-icon-btn--anim-hover-lift:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-md);
 }
 
 .ui-icon-btn--anim-hover-scale:hover {
@@ -128,38 +88,14 @@
     box-shadow: var(--shadow-md);
 }
 
-.ui-icon-btn--anim-pulse {
-    animation: pulse var(--animation-duration-slow) var(--ease-in-out) infinite;
-}
-
-@keyframes pulse {
-
-    0%,
-    100% {
-        transform: scale(1);
-    }
-
-    50% {
-        transform: scale(1.05);
-    }
-}
-
 /* Dark tweaks */
 :root[data-theme="dark"] .ui-icon-btn--secondary {
     background: rgba(255, 255, 255, 0.05);
     border-color: rgba(255, 255, 255, 0.12);
-    color: #e5e5e5;
+    color: var(--color-neutral-200);
 }
 
 :root[data-theme="dark"] .ui-icon-btn--secondary:hover {
     background: rgba(255, 255, 255, 0.1);
 }
 
-:root[data-theme="dark"] .ui-icon-btn--ghost:hover {
-    background: rgba(255, 255, 255, 0.08);
-}
-
-.ui-icon-btn.is-debug {
-    outline: 1px dashed var(--color-error);
-    position: relative;
-}

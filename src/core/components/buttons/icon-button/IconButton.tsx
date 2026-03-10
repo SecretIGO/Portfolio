@@ -1,6 +1,7 @@
 import React from 'react';
 import './IconButton.css';
 import { DEBUG_FLAGS } from '../../../constants/debug_flags';
+import ButtonBase from '../ButtonBase';
 
 export type IconButtonVariant = 'primary' | 'secondary' | 'ghost';
 export type IconButtonSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
@@ -23,7 +24,7 @@ export interface IconButtonProps extends React.ButtonHTMLAttributes<HTMLButtonEl
     loading?: boolean;
 }
 
-const IconButton: React.FC<IconButtonProps> = ({
+const IconButton = ({
     icon: Icon,
     ariaLabel,
     href,
@@ -39,7 +40,7 @@ const IconButton: React.FC<IconButtonProps> = ({
     disabled,
     type = 'button',
     ...rest
-}) => {
+}: IconButtonProps): React.ReactElement => {
     const debugEnabled = DEBUG_FLAGS.ui.all || DEBUG_FLAGS.ui.iconButton;
     const classes = [
         'ui-icon-btn',
@@ -54,28 +55,17 @@ const IconButton: React.FC<IconButtonProps> = ({
         .filter(Boolean)
         .join(' ');
 
-    const ariaBusy = loading ? { 'aria-busy': true } : {};
-    const ariaProps = ariaLabel ? { 'aria-label': ariaLabel } : {};
-    const debugAttrs = debugEnabled ? { 'data-debug': 'iconButton', 'data-debug-label': `IconButton(${variant},${size})` } : {};
+    const sharedAttrs = {
+        ...(ariaLabel ? { 'aria-label': ariaLabel } : {}),
+        ...(debugEnabled ? { 'data-debug': 'iconButton', 'data-debug-label': `IconButton(${variant},${size})` } : {}),
+    };
 
     return (
-        <a href={href} target={target} rel={rel}
-        >
-            <button
-                className={classes}
-                disabled={disabled || loading}
-                {...ariaBusy}
-                {...ariaProps}
-                {...debugAttrs}
-                type={type}
-                {...rest}
-            >
-                <Icon size={iconSize} />
-                {loading ? <span className="ui-icon-btn__spinner" aria-hidden="true" /> : null}
-            </button>
-        </a>
+        <ButtonBase href={href} target={target} rel={rel} className={classes} loading={loading} disabled={disabled} type={type} sharedAttrs={sharedAttrs} {...rest}>
+            <Icon size={iconSize} />
+            {loading && <span className="ui-icon-btn__spinner" aria-hidden="true" />}
+        </ButtonBase>
     );
 };
 
 export default IconButton;
-
