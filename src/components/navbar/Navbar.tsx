@@ -10,11 +10,20 @@ interface NavbarProps {
     onProjectsMouseLeave: () => void;
 }
 
-const Navbar: React.FC<NavbarProps> = ({
+const capitalize = (s: string): string => s.charAt(0).toUpperCase() + s.slice(1);
+
+const socialIconMap: Record<string, React.ComponentType<{ size?: number | string; className?: string }>> = {
+    twitter: Twitter,
+    facebook: Facebook,
+    linkedin: Linkedin,
+    github: Github,
+};
+
+const Navbar = ({
     isProjectsHovered,
     onProjectsMouseEnter,
     onProjectsMouseLeave
-}) => {
+}: NavbarProps): React.ReactElement => {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [theme, setTheme] = useState<'light' | 'dark'>(() => {
         if (typeof window === 'undefined') return 'light';
@@ -22,27 +31,13 @@ const Navbar: React.FC<NavbarProps> = ({
         return prefersDark ? 'dark' : 'light';
     });
 
-    const toggleMobileMenu = () => {
-        setMobileMenuOpen(!mobileMenuOpen);
-    };
+    const toggleMobileMenu = () => setMobileMenuOpen(prev => !prev);
 
     useEffect(() => {
-        const root = document.documentElement;
-        if (theme === 'dark') {
-            root.setAttribute('data-theme', 'dark');
-        } else {
-            root.setAttribute('data-theme', 'light');
-        }
+        document.documentElement.setAttribute('data-theme', theme);
     }, [theme]);
 
     const toggleTheme = () => setTheme(prev => (prev === 'dark' ? 'light' : 'dark'));
-
-    const socialIconMap: Record<string, React.ComponentType<{ size?: number | string; className?: string }>> = {
-        twitter: Twitter,
-        facebook: Facebook,
-        linkedin: Linkedin,
-        github: Github,
-    };
 
     return (
         <header className="navbar">
@@ -94,7 +89,7 @@ const Navbar: React.FC<NavbarProps> = ({
                     <div className="navbar-socials" aria-label="Social links">
                         {SOCIALS.map(s => {
                             const Icon = socialIconMap[s.name] || Github;
-                            const label = s.name.charAt(0).toUpperCase() + s.name.slice(1);
+                            const label = capitalize(s.name);
                             return (
                                 <IconButton
                                     key={s.name}
@@ -138,7 +133,7 @@ const Navbar: React.FC<NavbarProps> = ({
                     <div className="mobile-socials" aria-label="Social links">
                         {SOCIALS.map(s => {
                             const Icon = socialIconMap[s.name] || Github;
-                            const label = s.name.charAt(0).toUpperCase() + s.name.slice(1);
+                            const label = capitalize(s.name);
                             return (
                                 <a
                                     key={s.name}
