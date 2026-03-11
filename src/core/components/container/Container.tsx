@@ -21,7 +21,7 @@ export interface ContainerProps extends React.HTMLAttributes<HTMLElement> {
     gap?: FlexGap;
 }
 
-const Container: React.FC<ContainerProps> = ({
+const Container = ({
     as = 'div',
     className = '',
     max = 'xl',
@@ -33,8 +33,8 @@ const Container: React.FC<ContainerProps> = ({
     gap = 'md',
     children,
     ...rest
-}) => {
-    const Component = as as any;
+}: ContainerProps): React.ReactElement => {
+    const Component = as as React.ElementType;
 
     const debugEnabled = DEBUG_FLAGS.ui.all || DEBUG_FLAGS.ui.container;
     const classes = [
@@ -52,7 +52,9 @@ const Container: React.FC<ContainerProps> = ({
         .filter(Boolean)
         .join(' ');
 
-    const debugAttrs = debugEnabled ? { 'data-debug': 'container', 'data-debug-label': `Container(${max},${padding},${display}${display === 'flex' ? ',' + direction : ''})` } : {};
+    const debugAttrs: Record<string, string> = debugEnabled
+        ? { 'data-debug': 'container', 'data-debug-label': `Container(${max},${padding},${display}${display === 'flex' ? ',' + direction : ''})` }
+        : {};
 
     return (
         <Component className={classes} {...debugAttrs} {...rest}>

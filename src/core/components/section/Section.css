@@ -4,7 +4,7 @@
 
 /* Background variants */
 .ui-section--bg-default {
-    background: #ffffff;
+    background: var(--color-background-primary);
 }
 
 .ui-section--bg-muted {

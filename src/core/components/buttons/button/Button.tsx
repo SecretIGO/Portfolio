@@ -1,6 +1,7 @@
 import React from 'react';
 import './Button.css';
 import { DEBUG_FLAGS } from '../../../constants/debug_flags';
+import ButtonBase from '../ButtonBase';
 
 export type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'link';
 export type ButtonSize = 'sm' | 'md' | 'lg';
@@ -24,7 +25,7 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
     disabled?: boolean;
 }
 
-const Button: React.FC<ButtonProps> = ({
+const Button = ({
     children,
     className = '',
     variant = 'primary',
@@ -40,7 +41,7 @@ const Button: React.FC<ButtonProps> = ({
     type = 'button',
     href,
     ...rest
-}) => {
+}: ButtonProps): React.ReactElement => {
     const debugEnabled = DEBUG_FLAGS.ui.all || DEBUG_FLAGS.ui.button;
     const classes = [
         'ui-btn',
@@ -56,36 +57,25 @@ const Button: React.FC<ButtonProps> = ({
         .filter(Boolean)
         .join(' ');
 
-    const ariaBusy = loading ? { 'aria-busy': true } : {};
-    const debugAttrs = debugEnabled ? { 'data-debug': 'button', 'data-debug-label': `Button(${variant},${size})` } : {};
+    const sharedAttrs: Record<string, string> = debugEnabled
+        ? { 'data-debug': 'button', 'data-debug-label': `Button(${variant},${size})` }
+        : {};
 
     return (
-        <a href={href}>
-            <button
-                className={classes}
-                disabled={disabled || loading}
-                {...ariaBusy}
-                {...debugAttrs}
-                type={type}
-                {...rest}
-            >
-                {LeftIcon ? (
-                    <span className="ui-btn__icon ui-btn__icon--left" aria-hidden="true">
-                        <LeftIcon size={iconSize} />
-                    </span>
-                ) : null}
-
-                <span className="ui-btn__label">{children}</span>
-
-                {RightIcon ? (
-                    <span className="ui-btn__icon ui-btn__icon--right" aria-hidden="true">
-                        <RightIcon size={iconSize} />
-                    </span>
-                ) : null}
-
-                {loading ? <span className="ui-btn__spinner" aria-hidden="true" /> : null}
-            </button>
-        </a>
+        <ButtonBase href={href} className={classes} loading={loading} disabled={disabled} type={type} sharedAttrs={sharedAttrs} {...rest}>
+            {LeftIcon && (
+                <span className="ui-btn__icon ui-btn__icon--left" aria-hidden="true">
+                    <LeftIcon size={iconSize} />
+                </span>
+            )}
+            <span className="ui-btn__label">{children}</span>
+            {RightIcon && (
+                <span className="ui-btn__icon ui-btn__icon--right" aria-hidden="true">
+                    <RightIcon size={iconSize} />
+                </span>
+            )}
+            {loading && <span className="ui-btn__spinner" aria-hidden="true" />}
+        </ButtonBase>
     );
 };
 

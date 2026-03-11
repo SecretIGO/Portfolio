@@ -69,13 +69,13 @@
 /* Variants */
 .ui-tag--solid {
     background: var(--color-primary-600);
-    color: #fff;
+    color: var(--color-text-inverse);
     border-color: var(--color-primary-600);
 }
 
 .ui-tag--soft {
     background: rgba(0, 0, 0, 0.04);
-    color: #4a4a4a;
+    color: var(--color-text-secondary);
     border-color: rgba(0, 0, 0, 0.08);
 }
 

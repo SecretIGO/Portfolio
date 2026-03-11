@@ -11,15 +11,15 @@ export interface SectionProps extends React.HTMLAttributes<HTMLElement> {
     py?: SectionPy;
 }
 
-const Section: React.FC<SectionProps> = ({
+const Section = ({
     as = 'section',
     className = '',
     bg = 'default',
     py = 'lg',
     children,
     ...rest
-}) => {
-    const Component = as as any;
+}: SectionProps): React.ReactElement => {
+    const Component = as as React.ElementType;
 
     const debugEnabled = DEBUG_FLAGS.ui.all || DEBUG_FLAGS.ui.section;
     const classes = [
@@ -32,7 +32,9 @@ const Section: React.FC<SectionProps> = ({
         .filter(Boolean)
         .join(' ');
 
-    const debugAttrs = debugEnabled ? { 'data-debug': 'section', 'data-debug-label': `Section(${bg},${py})` } : {};
+    const debugAttrs: Record<string, string> = debugEnabled
+        ? { 'data-debug': 'section', 'data-debug-label': `Section(${bg},${py})` }
+        : {};
 
     return (
         <Component className={classes} {...debugAttrs} {...rest}>
