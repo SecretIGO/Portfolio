@@ -22,8 +22,9 @@ const ButtonBase = ({
     ...rest
 }: ButtonBaseProps): React.ReactElement => {
     if (href) {
+        const anchorProps = rest as React.AnchorHTMLAttributes<HTMLAnchorElement>;
         return (
-            <a href={href} target={target} rel={rel} className={className} {...sharedAttrs}>
+            <a href={href} target={target} rel={rel} className={className} {...sharedAttrs} {...anchorProps}>
                 {children}
             </a>
         );

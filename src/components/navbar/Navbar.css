@@ -21,14 +21,8 @@
 }
 
 .navbar-container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 clamp(var(--space-4), 4vw, var(--space-8));
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    position: relative;
     height: 72px;
-    gap: var(--space-6);
 }
 
 /* Brand/Logo */
@@ -117,18 +111,8 @@
 }
 
 /* Mobile Menu Toggle */
-.mobile-menu-toggle {
+.navbar .mobile-menu-toggle {
     display: none;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    background: transparent;
-    border: none;
-    color: var(--color-text-primary);
-    cursor: pointer;
-    border-radius: 8px;
-    transition: background 200ms ease;
 }
 
 .mobile-menu-toggle:hover {
@@ -178,6 +162,10 @@
     color: #ffffff;
 }
 
+:root[data-theme="dark"] .mobile-menu-toggle:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
 /* Mobile Menu */
 .mobile-menu {
     display: none;
@@ -208,17 +196,9 @@
 }
 
 .mobile-social-link {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 36px;
-    height: 36px;
     background: var(--color-primary-50);
-    border: 1px solid var(--color-primary-100);
-    border-radius: 8px;
+    border-color: var(--color-primary-100);
     color: var(--color-primary-700);
-    text-decoration: none;
-    transition: all 200ms ease;
 }
 
 .mobile-social-link:hover {
@@ -229,7 +209,7 @@
 
 :root[data-theme="dark"] .mobile-social-link {
     background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.1);
     color: #a0a0a0;
 }
 
@@ -255,15 +235,12 @@
 }
 
 .mobile-theme-toggle {
+    width: 100%;
+    justify-content: flex-start;
     margin-top: var(--space-2);
-    padding: var(--space-3) var(--space-4);
-    font-size: var(--font-size-base);
-    font-weight: var(--font-weight-medium);
     color: var(--color-primary-700);
     background: var(--color-primary-50);
-    border: 1px solid var(--color-primary-100);
-    border-radius: 8px;
-    transition: all 200ms ease;
+    border-color: var(--color-primary-100);
 }
 
 .mobile-theme-toggle:hover {
@@ -275,7 +252,7 @@
 :root[data-theme="dark"] .mobile-theme-toggle {
     color: #e5e5e5;
     background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.1);
 }
 
 :root[data-theme="dark"] .mobile-theme-toggle:hover {
@@ -295,8 +272,8 @@
         display: none;
     }
 
-    .mobile-menu-toggle {
-        display: flex;
+    .navbar .mobile-menu-toggle {
+        display: inline-flex;
     }
 
     .mobile-menu {
