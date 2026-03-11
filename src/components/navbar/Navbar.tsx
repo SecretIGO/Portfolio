@@ -5,6 +5,7 @@ import { PAGE_NAV, SOCIALS } from '../../core/constants/navigation';
 import Container from '../../core/components/container/Container';
 import Button from '../../core/components/buttons/button/Button';
 import IconButton from '../../core/components/buttons/icon-button/IconButton';
+import NavLink from '../../core/components/nav-link/NavLink';
 
 interface NavbarProps {
     isProjectsHovered: boolean;
@@ -61,24 +62,21 @@ const Navbar = ({
                 <nav className="navbar-nav">
                     {PAGE_NAV.map(item => {
                         const isProjects = item.id === 'projects';
-                        if (isProjects) {
-                            return (
-                                <a
-                                    key={item.id}
-                                    href={item.href}
-                                    className="nav-link nav-link-dropdown"
-                                    onMouseEnter={onProjectsMouseEnter}
-                                    onMouseLeave={onProjectsMouseLeave}
-                                    aria-haspopup="menu"
-                                    aria-expanded={isProjectsHovered}
-                                >
-                                    {item.label}
-                                    <ChevronDown size={16} className="dropdown-icon" />
-                                </a>
-                            );
-                        }
                         return (
-                            <a key={item.id} href={item.href} className="nav-link">{item.label}</a>
+                            <NavLink
+                                key={item.id}
+                                href={item.href}
+                                size="sm"
+                                {...(isProjects ? {
+                                    rightIcon: ChevronDown,
+                                    onMouseEnter: onProjectsMouseEnter,
+                                    onMouseLeave: onProjectsMouseLeave,
+                                    'aria-haspopup': 'menu' as const,
+                                    'aria-expanded': isProjectsHovered,
+                                } : {})}
+                            >
+                                {item.label}
+                            </NavLink>
                         );
                     })}
                 </nav>
@@ -134,9 +132,9 @@ const Navbar = ({
             {mobileMenuOpen && (
                 <div className="mobile-menu">
                     {PAGE_NAV.map(item => (
-                        <a key={item.id} href={item.href} className="mobile-nav-link" onClick={toggleMobileMenu}>
+                        <NavLink key={item.id} href={item.href} size="md" onClick={toggleMobileMenu}>
                             {item.label}
-                        </a>
+                        </NavLink>
                     ))}
                     <Button
                         variant='ghost'
