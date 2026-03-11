@@ -15,7 +15,7 @@ export interface CardProps extends React.HTMLAttributes<HTMLElement> {
     animation?: CardAnimation;
 }
 
-const Card: React.FC<CardProps> = ({
+const Card = ({
     as = 'div',
     className = '',
     variant = 'outline',
@@ -24,8 +24,8 @@ const Card: React.FC<CardProps> = ({
     animation = 'none',
     children,
     ...rest
-}) => {
-    const Component = as as any;
+}: CardProps): React.ReactElement => {
+    const Component = as as React.ElementType;
 
     const debugEnabled = DEBUG_FLAGS.ui.all || DEBUG_FLAGS.ui.card;
     const classes = [
@@ -40,7 +40,9 @@ const Card: React.FC<CardProps> = ({
         .filter(Boolean)
         .join(' ');
 
-    const debugAttrs = debugEnabled ? { 'data-debug': 'card', 'data-debug-label': `Card(${variant},${padding})` } : {};
+    const debugAttrs: Record<string, string> = debugEnabled
+        ? { 'data-debug': 'card', 'data-debug-label': `Card(${variant},${padding})` }
+        : {};
 
     return (
         <Component className={classes} {...debugAttrs} {...rest}>

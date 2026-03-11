@@ -21,7 +21,7 @@ export interface TagProps extends React.HTMLAttributes<HTMLElement> {
     iconColor?: string; // Optional color for the icon
 }
 
-const Tag: React.FC<TagProps> = ({
+const Tag = ({
     as = 'span',
     className = '',
     variant = 'soft',
@@ -35,8 +35,8 @@ const Tag: React.FC<TagProps> = ({
     iconColor,
     children,
     ...rest
-}) => {
-    const Component = as as any;
+}: TagProps): React.ReactElement => {
+    const Component = as as React.ElementType;
 
     const debugEnabled = DEBUG_FLAGS.ui.all || DEBUG_FLAGS.ui.tag;
     const classes = [
@@ -50,7 +50,9 @@ const Tag: React.FC<TagProps> = ({
         .filter(Boolean)
         .join(' ');
 
-    const debugAttrs = debugEnabled ? { 'data-debug': 'tag', 'data-debug-label': `Tag(${variant},${size})` } : {};
+    const debugAttrs: Record<string, string> = debugEnabled
+        ? { 'data-debug': 'tag', 'data-debug-label': `Tag(${variant},${size})` }
+        : {};
 
     // Inline styles for the icon
     const iconStyle = {

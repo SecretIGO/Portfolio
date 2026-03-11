@@ -1,5 +1,5 @@
 .ui-card {
-    background: #ffffff;
+    background: var(--color-background-primary);
     color: var(--color-text-primary);
     border: 1px solid var(--color-border-primary);
     border-radius: var(--border-radius-md);
@@ -75,10 +75,10 @@
 }
 
 .ui-card--anim-pulse {
-    animation: pulse var(--animation-duration-slow) var(--ease-in-out) infinite;
+    animation: card-pulse var(--animation-duration-slow) var(--ease-in-out) infinite;
 }
 
-@keyframes pulse {
+@keyframes card-pulse {
 
     0%,
     100% {
@@ -93,7 +93,7 @@
 :root[data-theme="dark"] .ui-card {
     background: rgba(255, 255, 255, 0.04);
     border-color: rgba(255, 255, 255, 0.12);
-    color: #e5e5e5;
+    color: var(--color-neutral-200);
 }
 
 :root[data-theme="dark"] .ui-card--soft {
@@ -108,3 +108,4 @@
     outline: 1px dashed var(--color-error);
     position: relative;
 }
+
