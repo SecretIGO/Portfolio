@@ -62,32 +62,22 @@
     gap: var(--space-1);
 }
 
-.year-button {
-    background: transparent;
-    border: none;
-    color: #666666;
+.year-button.ui-btn {
+    justify-content: flex-start;
+    width: 100%;
+    min-height: unset;
     padding: var(--space-2) var(--space-3);
-    border-radius: 6px;
-    cursor: pointer;
-    transition: all 180ms ease;
-    font-size: var(--font-size-sm);
     font-weight: var(--font-weight-medium);
-    text-align: left;
-    position: relative;
+    font-size: var(--font-size-sm);
 }
 
-.year-button:hover {
-    background: var(--color-primary-50);
+.year-button.ui-btn.ui-btn--ghost {
+    color: var(--color-text-secondary);
+}
+
+.year-button.ui-btn.ui-btn--ghost:hover {
     color: var(--color-primary-800);
-}
-
-.year-button.active {
-    background: var(--color-primary-600);
-    color: var(--color-text-inverse);
-}
-
-.year-button.active:hover {
-    background: var(--color-primary-700);
+    background: var(--color-primary-50);
 }
 
 /* Main Content Area */
@@ -137,7 +127,7 @@
 }
 
 .content-title {
-    color: #1a1a1a;
+    color: var(--color-text-primary);
     font-size: var(--font-size-xl);
     font-weight: var(--font-weight-bold);
     margin: 0;
@@ -147,14 +137,12 @@
     line-height: 1.05;
 }
 
-.project-count {
+/* Project count tag (color overrides; base handled by Tag) */
+.ui-tag.project-count {
     background: var(--color-primary-50);
     color: var(--color-primary-700);
-    padding: var(--space-1) var(--space-3);
-    border-radius: 20px;
-    font-size: var(--font-size-xs);
+    border-color: var(--color-primary-100);
     font-weight: var(--font-weight-semibold);
-    border: 1px solid var(--color-primary-100);
 }
 
 /* Scrollable Projects Container */
@@ -240,20 +228,25 @@
     }
 }
 
-/* Project Cards */
-.project-card {
-    background: #ffffff;
-    border: 1px solid rgba(0, 0, 0, 0.08);
-    border-radius: 10px;
-    padding: var(--space-4);
-    transition: all 200ms ease;
+/* Project cards — subtle hover, not the default hover-lift */
+.project-card.ui-card {
     cursor: pointer;
-    position: relative;
+    border-color: rgba(0, 0, 0, 0.08);
 }
 
-.project-card:hover {
+.project-card.ui-card:hover {
     border-color: var(--color-primary-200);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    transform: none;
+}
+
+:root[data-theme="dark"] .project-card.ui-card {
+    border-color: rgba(255, 255, 255, 0.06);
+}
+
+:root[data-theme="dark"] .project-card.ui-card:hover {
+    border-color: var(--color-primary-700);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
 }
 
 .project-header {
@@ -264,7 +257,7 @@
 }
 
 .project-title {
-    color: #1a1a1a;
+    color: var(--color-text-primary);
     font-size: var(--font-size-base);
     font-weight: var(--font-weight-semibold);
     margin: 0;
@@ -274,7 +267,7 @@
 
 
 .project-description {
-    color: #666666;
+    color: var(--color-text-secondary);
     font-size: var(--font-size-sm);
     line-height: 1.5;
     margin: 0 0 var(--space-3) 0;
@@ -289,88 +282,68 @@
     justify-content: center;
 }
 
-.language-tag {
-    padding: var(--space-1) var(--space-2);
-    border-radius: var(--border-radius-full);
-    font-size: var(--font-size-xs);
-    font-weight: var(--font-weight-medium);
-    border: 1px solid;
-    white-space: nowrap;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.language-tag:hover {
-    transform: translateY(-1px);
-}
-
-/* Frontend – Coral (#FF6B6B) */
-.language-frontend {
+.ui-tag.language-frontend {
     background: rgba(var(--color-category-frontend-rgb), 0.10);
     color: var(--color-category-frontend);
     border-color: rgba(var(--color-category-frontend-rgb), 0.20);
 }
 
-.language-frontend:hover {
+.ui-tag.language-frontend:hover {
     background: rgba(var(--color-category-frontend-rgb), 0.20);
     border-color: rgba(var(--color-category-frontend-rgb), 0.40);
 }
 
-/* Backend – Navy (#1E3A8A) */
-.language-backend {
+.ui-tag.language-backend {
     background: rgba(var(--color-category-backend-rgb), 0.10);
     color: var(--color-category-backend);
     border-color: rgba(var(--color-category-backend-rgb), 0.20);
 }
 
-.language-backend:hover {
+.ui-tag.language-backend:hover {
     background: rgba(var(--color-category-backend-rgb), 0.20);
     border-color: rgba(var(--color-category-backend-rgb), 0.40);
 }
 
-/* Libraries – Sage Green (#4ADE80) */
-.language-libraries {
+.ui-tag.language-libraries {
     background: rgba(var(--color-category-libraries-rgb), 0.10);
     color: var(--color-category-libraries);
     border-color: rgba(var(--color-category-libraries-rgb), 0.20);
 }
 
-.language-libraries:hover {
+.ui-tag.language-libraries:hover {
     background: rgba(var(--color-category-libraries-rgb), 0.20);
     border-color: rgba(var(--color-category-libraries-rgb), 0.40);
 }
 
-/* Database – Cyan (#06B6D4) */
-.language-database {
+.ui-tag.language-database {
     background: rgba(var(--color-category-database-rgb), 0.10);
     color: var(--color-category-database);
     border-color: rgba(var(--color-category-database-rgb), 0.20);
 }
 
-.language-database:hover {
+.ui-tag.language-database:hover {
     background: rgba(var(--color-category-database-rgb), 0.20);
     border-color: rgba(var(--color-category-database-rgb), 0.40);
 }
 
-/* Framework – Violet (#8B5CF6) */
-.language-framework {
+.ui-tag.language-framework {
     background: rgba(var(--color-category-framework-rgb), 0.10);
     color: var(--color-category-framework);
     border-color: rgba(var(--color-category-framework-rgb), 0.20);
 }
 
-.language-framework:hover {
+.ui-tag.language-framework:hover {
     background: rgba(var(--color-category-framework-rgb), 0.20);
     border-color: rgba(var(--color-category-framework-rgb), 0.40);
 }
 
-/* Other/Uncategorized - Gray */
-.language-other {
+.ui-tag.language-other {
     background: rgba(107, 114, 128, 0.1);
-    color: #6b7280;
+    color: var(--color-neutral-500);
     border-color: rgba(107, 114, 128, 0.2);
 }
 
-.language-other:hover {
+.ui-tag.language-other:hover {
     background: rgba(107, 114, 128, 0.2);
     border-color: rgba(107, 114, 128, 0.4);
 }
@@ -397,7 +370,7 @@
 
 .legend-label {
     font-size: var(--font-size-xs);
-    color: #666666;
+    color: var(--color-text-secondary);
     font-weight: var(--font-weight-medium);
     white-space: nowrap;
 }
@@ -429,7 +402,7 @@
     align-items: center;
     justify-content: center;
     height: 200px;
-    color: #999999;
+    color: var(--color-text-tertiary);
     font-size: var(--font-size-base);
     font-style: italic;
 }
@@ -448,9 +421,13 @@
     color: var(--color-primary-400);
 }
 
-:root[data-theme="dark"] .year-button:hover {
-    background: rgba(255, 255, 255, 0.06);
+:root[data-theme="dark"] .year-button.ui-btn.ui-btn--ghost {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+:root[data-theme="dark"] .year-button.ui-btn.ui-btn--ghost:hover {
     color: #ffffff;
+    background: rgba(255, 255, 255, 0.08);
 }
 
 :root[data-theme="dark"] .content-header {
@@ -458,32 +435,23 @@
 }
 
 :root[data-theme="dark"] .content-title {
-    color: #e5e5e5;
+    color: var(--color-neutral-200);
 }
 
 :root[data-theme="dark"] .project-title {
-    color: #e5e5e5;
+    color: var(--color-neutral-200);
 }
 
 :root[data-theme="dark"] .project-description {
-    color: #a0a0a0;
-}
-
-:root[data-theme="dark"] .project-card {
-    background: #111111;
-    border-color: rgba(255, 255, 255, 0.06);
-}
-
-:root[data-theme="dark"] .project-card:hover {
-    border-color: var(--color-primary-700);
+    color: var(--color-neutral-400);
 }
 
 :root[data-theme="dark"] .legend-label {
-    color: #a3a3a3;
+    color: var(--color-neutral-400);
 }
 
 :root[data-theme="dark"] .no-projects {
-    color: #a3a3a3;
+    color: var(--color-neutral-400);
 }
 
 /* Responsive Design */
@@ -511,9 +479,11 @@
         gap: var(--space-2);
     }
 
-    .year-button {
+    /* Mobile: reset year-button to auto width, centered */
+    .year-button.ui-btn {
+        width: auto;
         min-width: 70px;
-        text-align: center;
+        justify-content: center;
         white-space: nowrap;
     }
 
