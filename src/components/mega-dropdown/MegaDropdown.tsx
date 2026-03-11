@@ -2,6 +2,9 @@ import React, { useState, useEffect, useRef } from 'react';
 import './MegaDropdown.css';
 import projects from '../../data/projects';
 import { sortLanguagesByCategory } from '../../utils/languageUtils';
+import Button from '../../core/components/buttons/button/Button';
+import Card from '../../core/components/card/Card';
+import Tag from '../../core/components/tag/Tag';
 
 interface MegaDropdownProps {
     isVisible: boolean;
@@ -9,11 +12,11 @@ interface MegaDropdownProps {
     onMouseLeave: () => void;
 }
 
-const MegaDropdown: React.FC<MegaDropdownProps> = ({
+const MegaDropdown = ({
     isVisible,
     onMouseEnter,
-    onMouseLeave
-}) => {
+    onMouseLeave,
+}: MegaDropdownProps): React.ReactElement => {
 
     const lockedY = useRef<number | null>(null);
 
@@ -105,13 +108,16 @@ const MegaDropdown: React.FC<MegaDropdownProps> = ({
                     <h3 className="navigation-title">Projects by Year</h3>
                     <div className="year-list">
                         {yearOptions.map((year) => (
-                            <button
+                            <Button
                                 key={year}
-                                className={`year-button ${selectedYear === year ? 'active' : ''}`}
+                                variant={selectedYear === year ? 'primary' : 'ghost'}
+                                size="sm"
+                                radius="sm"
+                                className="year-button"
                                 onClick={() => handleSelectYear(year)}
                             >
-                                <span className="year-label">{year}</span>
-                            </button>
+                                {year}
+                            </Button>
                         ))}
                     </div>
                 </div>
@@ -150,36 +156,48 @@ const MegaDropdown: React.FC<MegaDropdownProps> = ({
                                     <span className="legend-label">Database</span>
                                 </div>
                             </div>
-                            <span className="project-count">{getProjectsForYear(displayYear).length} projects</span>
+                            <Tag size="sm" radius="full" className="project-count">
+                                {getProjectsForYear(displayYear).length} projects
+                            </Tag>
                         </div>
                     </div>
 
                     <div className="projects-scroll-container">
-                        <div className={`projects-list`}>
-                            {(getProjectsForYear(displayYear).length > 0
-                                ? getProjectsForYear(displayYear)
-                                : null
-                            )?.map((project, index) => (
-                                <div key={`${(project as any).year}-${(project as any).title}-${index}`} className="project-card">
-                                    <div className="project-header">
-                                        <h4 className="project-title">{project.title}</h4>
-                                    </div>
-                                    <p className="project-description">{project.description}</p>
-                                    <div className="project-languages">
-                                        {sortLanguagesByCategory(project.languages)
-                                            .map((lang, index) => (
-                                                <span key={index} className={`language-tag language-${lang.category}`}>
+                        <div className="projects-list">
+                            {getProjectsForYear(displayYear).length > 0
+                                ? getProjectsForYear(displayYear).map((project, index) => (
+                                    <Card
+                                        key={`${(project as any).year}-${(project as any).title}-${index}`}
+                                        variant="outline"
+                                        radius="lg"
+                                        padding="md"
+                                        className="project-card"
+                                    >
+                                        <div className="project-header">
+                                            <h4 className="project-title">{project.title}</h4>
+                                        </div>
+                                        <p className="project-description">{project.description}</p>
+                                        <div className="project-languages">
+                                            {sortLanguagesByCategory(project.languages).map((lang, i) => (
+                                                <Tag
+                                                    key={i}
+                                                    variant="soft"
+                                                    size="sm"
+                                                    radius="full"
+                                                    className={`language-${lang.category}`}
+                                                >
                                                     {lang.name}
-                                                </span>
+                                                </Tag>
                                             ))}
+                                        </div>
+                                    </Card>
+                                ))
+                                : (
+                                    <div className="no-projects">
+                                        <p>No projects found for {String(displayYear)}</p>
                                     </div>
-                                </div>
-                            ))}
-                            {getProjectsForYear(displayYear).length === 0 && (
-                                <div className="no-projects">
-                                    <p>No projects found for {String(displayYear)}</p>
-                                </div>
-                            )}
+                                )
+                            }
                         </div>
                     </div>
                 </div>

@@ -112,6 +112,6 @@
 }
 
 .ui-tag.is-debug {
-    outline: 1px dashed var(--color-error);
+    outline: 1px dashed var(--color-success);
     position: relative;
 }

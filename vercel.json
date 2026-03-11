@@ -4,5 +4,5 @@
     "buildCommand": "vite build",
     "devCommand": "vite",
     "outputDirectory": "dist",
-    "ignoreCommand": "git diff --quiet HEAD^ HEAD || echo 'changed'"
+    "ignoreCommand": "git diff --quiet HEAD^ HEAD"
 }
