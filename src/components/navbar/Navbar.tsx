@@ -2,7 +2,10 @@ import React, { useEffect, useState } from 'react';
 import './Navbar.css';
 import { Menu, X, ChevronDown, Sun, Moon, Twitter, Facebook, Linkedin, Github } from 'lucide-react';
 import { PAGE_NAV, SOCIALS } from '../../core/constants/navigation';
+import Container from '../../core/components/container/Container';
+import Button from '../../core/components/buttons/button/Button';
 import IconButton from '../../core/components/buttons/icon-button/IconButton';
+import NavLink from '../../core/components/nav-link/NavLink';
 
 interface NavbarProps {
     isProjectsHovered: boolean;
@@ -10,11 +13,20 @@ interface NavbarProps {
     onProjectsMouseLeave: () => void;
 }
 
-const Navbar: React.FC<NavbarProps> = ({
+const capitalize = (s: string): string => s.charAt(0).toUpperCase() + s.slice(1);
+
+const socialIconMap: Record<string, React.ComponentType<{ size?: number | string; className?: string }>> = {
+    twitter: Twitter,
+    facebook: Facebook,
+    linkedin: Linkedin,
+    github: Github,
+};
+
+const Navbar = ({
     isProjectsHovered,
     onProjectsMouseEnter,
     onProjectsMouseLeave
-}) => {
+}: NavbarProps): React.ReactElement => {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [theme, setTheme] = useState<'light' | 'dark'>(() => {
         if (typeof window === 'undefined') return 'light';
@@ -22,31 +34,24 @@ const Navbar: React.FC<NavbarProps> = ({
         return prefersDark ? 'dark' : 'light';
     });
 
-    const toggleMobileMenu = () => {
-        setMobileMenuOpen(!mobileMenuOpen);
-    };
+    const toggleMobileMenu = () => setMobileMenuOpen(prev => !prev);
 
     useEffect(() => {
-        const root = document.documentElement;
-        if (theme === 'dark') {
-            root.setAttribute('data-theme', 'dark');
-        } else {
-            root.setAttribute('data-theme', 'light');
-        }
+        document.documentElement.setAttribute('data-theme', theme);
     }, [theme]);
 
     const toggleTheme = () => setTheme(prev => (prev === 'dark' ? 'light' : 'dark'));
 
-    const socialIconMap: Record<string, React.ComponentType<{ size?: number | string; className?: string }>> = {
-        twitter: Twitter,
-        facebook: Facebook,
-        linkedin: Linkedin,
-        github: Github,
-    };
-
     return (
         <header className="navbar">
-            <div className="navbar-container">
+            <Container
+                max="2xl"
+                display="flex"
+                justify="between"
+                align="center"
+                padding="responsive"
+                className="navbar-container"
+            >
                 {/* Logo/Brand */}
                 <a href="#home" className="navbar-brand">
                     <img src="/images/SecretIGO_ico.png" alt="SecretIGO" className="navbar-logo" />
@@ -57,24 +62,21 @@ const Navbar: React.FC<NavbarProps> = ({
                 <nav className="navbar-nav">
                     {PAGE_NAV.map(item => {
                         const isProjects = item.id === 'projects';
-                        if (isProjects) {
-                            return (
-                                <a
-                                    key={item.id}
-                                    href={item.href}
-                                    className="nav-link nav-link-dropdown"
-                                    onMouseEnter={onProjectsMouseEnter}
-                                    onMouseLeave={onProjectsMouseLeave}
-                                    aria-haspopup="menu"
-                                    aria-expanded={isProjectsHovered}
-                                >
-                                    {item.label}
-                                    <ChevronDown size={16} className="dropdown-icon" />
-                                </a>
-                            );
-                        }
                         return (
-                            <a key={item.id} href={item.href} className="nav-link">{item.label}</a>
+                            <NavLink
+                                key={item.id}
+                                href={item.href}
+                                size="sm"
+                                {...(isProjects ? {
+                                    rightIcon: ChevronDown,
+                                    onMouseEnter: onProjectsMouseEnter,
+                                    onMouseLeave: onProjectsMouseLeave,
+                                    'aria-haspopup': 'menu' as const,
+                                    'aria-expanded': isProjectsHovered,
+                                } : {})}
+                            >
+                                {item.label}
+                            </NavLink>
                         );
                     })}
                 </nav>
@@ -94,7 +96,7 @@ const Navbar: React.FC<NavbarProps> = ({
                     <div className="navbar-socials" aria-label="Social links">
                         {SOCIALS.map(s => {
                             const Icon = socialIconMap[s.name] || Github;
-                            const label = s.name.charAt(0).toUpperCase() + s.name.slice(1);
+                            const label = capitalize(s.name);
                             return (
                                 <IconButton
                                     key={s.name}
@@ -113,42 +115,54 @@ const Navbar: React.FC<NavbarProps> = ({
                 </div>
 
                 {/* Mobile Menu Toggle */}
-                <button
-                    className="mobile-menu-toggle"
+                <IconButton
+                    icon={mobileMenuOpen ? X : Menu}
                     onClick={toggleMobileMenu}
-                    aria-label="Toggle menu"
+                    ariaLabel="Toggle menu"
                     aria-expanded={mobileMenuOpen}
-                >
-                    {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-                </button>
-            </div>
+                    variant='ghost'
+                    size='lg'
+                    radius='sm'
+                    iconSize={24}
+                    className="mobile-menu-toggle"
+                />
+            </Container>
 
             {/* Mobile Menu */}
             {mobileMenuOpen && (
                 <div className="mobile-menu">
                     {PAGE_NAV.map(item => (
-                        <a key={item.id} href={item.href} className="mobile-nav-link" onClick={toggleMobileMenu}>
+                        <NavLink key={item.id} href={item.href} size="md" onClick={toggleMobileMenu}>
                             {item.label}
-                        </a>
+                        </NavLink>
                     ))}
-                    <button className="mobile-theme-toggle" onClick={() => { toggleTheme(); toggleMobileMenu(); }}>
+                    <Button
+                        variant='ghost'
+                        size='md'
+                        radius='sm'
+                        leftIcon={theme === 'dark' ? Sun : Moon}
+                        onClick={() => { toggleTheme(); toggleMobileMenu(); }}
+                        className="mobile-theme-toggle"
+                    >
                         {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
-                    </button>
+                    </Button>
                     <div className="mobile-separator" aria-hidden="true" />
                     <div className="mobile-socials" aria-label="Social links">
                         {SOCIALS.map(s => {
                             const Icon = socialIconMap[s.name] || Github;
-                            const label = s.name.charAt(0).toUpperCase() + s.name.slice(1);
+                            const label = capitalize(s.name);
                             return (
-                                <a
+                                <IconButton
                                     key={s.name}
                                     href={s.href}
-                                    className="mobile-social-link"
+                                    icon={Icon}
                                     onClick={toggleMobileMenu}
-                                    aria-label={label}
-                                >
-                                    <Icon size={18} />
-                                </a>
+                                    ariaLabel={label}
+                                    variant='ghost'
+                                    size='md'
+                                    radius='sm'
+                                    className="mobile-social-link"
+                                />
                             );
                         })}
                     </div>
