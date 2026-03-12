@@ -41,14 +41,23 @@ const TechCategory: React.FC<TechCategoryProps> = ({ title, technologies }) => {
     );
 };
 
-useEffect(() => {
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = '/node_modules/devicon/devicon.min.css';
-    document.head.appendChild(link);
-}, []);
-
 const About: React.FC = () => {
+    useEffect(() => {
+        const el = document.getElementById('about');
+        if (!el) return;
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    // @ts-ignore — Vite handles dynamic CSS imports; TS lacks the type
+                    import('devicon/devicon.min.css');
+                    observer.disconnect();
+                }
+            },
+            { rootMargin: '300px' }
+        );
+        observer.observe(el);
+        return () => observer.disconnect();
+    }, []);
     const techTabs: { key: TechCategoryKey; label: string }[] = [
         { key: 'frontend', label: 'Frontend' },
         { key: 'backend', label: 'Backend' },
