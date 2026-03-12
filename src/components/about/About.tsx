@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Code2, Palette, Rocket, Users } from 'lucide-react';
-import 'devicon/devicon.min.css';
 
 import Container from '../../core/components/container/Container';
 import Section from '../../core/components/section/Section';
@@ -41,6 +40,13 @@ const TechCategory: React.FC<TechCategoryProps> = ({ title, technologies }) => {
         </div>
     );
 };
+
+useEffect(() => {
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = '/node_modules/devicon/devicon.min.css';
+    document.head.appendChild(link);
+}, []);
 
 const About: React.FC = () => {
     const techTabs: { key: TechCategoryKey; label: string }[] = [
