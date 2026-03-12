@@ -11,6 +11,7 @@ export const DEBUG_FLAGS = {
         all: false,
         button: false,
         iconButton: false,
+        navLink: false,
         container: false,
         card: false,
         tag: false,

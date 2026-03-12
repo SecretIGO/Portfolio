@@ -56,10 +56,12 @@ const MegaDropdown = ({
 
         if (isVisible && lockedY.current === null) {
             lockedY.current = window.scrollY || window.pageYOffset;
+            const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
             body.style.position = 'fixed';
             body.style.top = `-${lockedY.current}px`;
             body.style.width = '100%';
             body.style.overflow = 'hidden';
+            body.style.paddingRight = `${scrollbarWidth}px`;
         }
 
         if (!isVisible && lockedY.current !== null) {
@@ -70,6 +72,7 @@ const MegaDropdown = ({
             body.style.top = '';
             body.style.width = '';
             body.style.overflow = '';
+            body.style.paddingRight = '';
             window.scrollTo(0, y);
             root.style.scrollBehavior = prev;
             lockedY.current = null;
@@ -88,6 +91,7 @@ const MegaDropdown = ({
                 body.style.top = '';
                 body.style.width = '';
                 body.style.overflow = '';
+                body.style.paddingRight = '';
                 window.scrollTo(0, y);
                 root.style.scrollBehavior = prev;
                 lockedY.current = null;
