@@ -120,7 +120,6 @@ const Hero: React.FC = () => {
                                 className="hero-image"
                                 width={500}
                                 height={500}
-                                decoding="async"
                             />
                         </picture>
                     </div>
