@@ -112,14 +112,16 @@ const Hero: React.FC = () => {
                 <div className="hero-visual">
                     <div className="hero-image-wrapper">
                         <div className="image-backdrop"></div>
-                        <img
-                            src="/images/SecretIGO_ico.png"
-                            alt="Johanz David Tolentino"
-                            className="hero-image"
-                            width={500}
-                            height={500}
-                            decoding="async"
-                        />
+                        <picture>
+                            <source srcSet="/images/SecretIGO_ico.webp" type="image/webp" />
+                            <img
+                                src="/images/SecretIGO_ico.png"
+                                alt="Johanz David Tolentino"
+                                className="hero-image"
+                                width={500}
+                                height={500}
+                            />
+                        </picture>
                     </div>
                 </div>
             </Container>
