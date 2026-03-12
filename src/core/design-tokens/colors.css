@@ -73,23 +73,18 @@
 
     /* Category Colors */
     --color-category-frontend: #FF6B6B;
-    /* Coral */
     --color-category-frontend-rgb: 255, 107, 107;
 
     --color-category-backend: #1E3A8A;
-    /* Navy */
     --color-category-backend-rgb: 30, 58, 138;
 
     --color-category-framework: #8B5CF6;
-    /* Violet */
     --color-category-framework-rgb: 139, 92, 246;
 
     --color-category-libraries: #4ADE80;
-    /* Sage Green */
     --color-category-libraries-rgb: 74, 222, 128;
 
     --color-category-database: #06B6D4;
-    /* Cyan */
     --color-category-database-rgb: 6, 182, 212;
 }
 
@@ -108,6 +103,22 @@
 
         --color-background-primary: #0f0f0f;
         --color-text-primary: #ffffff;
+
+        /* Category Colors (dark) */
+        --color-category-frontend: #FF6B6B;
+        --color-category-frontend-rgb: 255, 107, 107;
+
+        --color-category-backend: #93b4f8;
+        --color-category-backend-rgb: 147, 180, 248;
+
+        --color-category-framework: #a78bfa;
+        --color-category-framework-rgb: 167, 139, 250;
+
+        --color-category-libraries: #4ADE80;
+        --color-category-libraries-rgb: 74, 222, 128;
+
+        --color-category-database: #22d3ee;
+        --color-category-database-rgb: 34, 211, 238;
     }
 }
 
@@ -126,4 +137,20 @@
 
     --color-background-primary: #0f0f0f;
     --color-text-primary: #ffffff;
+
+    /* Category Colors (dark) */
+    --color-category-frontend: #FF6B6B;
+    --color-category-frontend-rgb: 255, 107, 107;
+
+    --color-category-backend: #93b4f8;
+    --color-category-backend-rgb: 147, 180, 248;
+
+    --color-category-framework: #a78bfa;
+    --color-category-framework-rgb: 167, 139, 250;
+
+    --color-category-libraries: #4ADE80;
+    --color-category-libraries-rgb: 74, 222, 128;
+
+    --color-category-database: #22d3ee;
+    --color-category-database-rgb: 34, 211, 238;
 }

@@ -348,6 +348,66 @@
     border-color: rgba(107, 114, 128, 0.4);
 }
 
+:root[data-theme="dark"] .ui-tag.language-frontend {
+    background: rgba(var(--color-category-frontend-rgb), 0.18);
+    color: var(--color-category-frontend);
+    border-color: rgba(var(--color-category-frontend-rgb), 0.35);
+}
+:root[data-theme="dark"] .ui-tag.language-frontend:hover {
+    background: rgba(var(--color-category-frontend-rgb), 0.30);
+    border-color: rgba(var(--color-category-frontend-rgb), 0.55);
+}
+
+:root[data-theme="dark"] .ui-tag.language-backend {
+    background: rgba(var(--color-category-backend-rgb), 0.18);
+    color: var(--color-category-backend);
+    border-color: rgba(var(--color-category-backend-rgb), 0.35);
+}
+:root[data-theme="dark"] .ui-tag.language-backend:hover {
+    background: rgba(var(--color-category-backend-rgb), 0.30);
+    border-color: rgba(var(--color-category-backend-rgb), 0.55);
+}
+
+:root[data-theme="dark"] .ui-tag.language-libraries {
+    background: rgba(var(--color-category-libraries-rgb), 0.15);
+    color: var(--color-category-libraries);
+    border-color: rgba(var(--color-category-libraries-rgb), 0.35);
+}
+:root[data-theme="dark"] .ui-tag.language-libraries:hover {
+    background: rgba(var(--color-category-libraries-rgb), 0.25);
+    border-color: rgba(var(--color-category-libraries-rgb), 0.55);
+}
+
+:root[data-theme="dark"] .ui-tag.language-database {
+    background: rgba(var(--color-category-database-rgb), 0.15);
+    color: var(--color-category-database);
+    border-color: rgba(var(--color-category-database-rgb), 0.35);
+}
+:root[data-theme="dark"] .ui-tag.language-database:hover {
+    background: rgba(var(--color-category-database-rgb), 0.25);
+    border-color: rgba(var(--color-category-database-rgb), 0.55);
+}
+
+:root[data-theme="dark"] .ui-tag.language-framework {
+    background: rgba(var(--color-category-framework-rgb), 0.18);
+    color: var(--color-category-framework);
+    border-color: rgba(var(--color-category-framework-rgb), 0.35);
+}
+:root[data-theme="dark"] .ui-tag.language-framework:hover {
+    background: rgba(var(--color-category-framework-rgb), 0.30);
+    border-color: rgba(var(--color-category-framework-rgb), 0.55);
+}
+
+:root[data-theme="dark"] .ui-tag.language-other {
+    background: rgba(107, 114, 128, 0.18);
+    color: var(--color-neutral-300);
+    border-color: rgba(107, 114, 128, 0.35);
+}
+:root[data-theme="dark"] .ui-tag.language-other:hover {
+    background: rgba(107, 114, 128, 0.30);
+    border-color: rgba(107, 114, 128, 0.55);
+}
+
 /* Legend Styles */
 .legend {
     display: flex;
