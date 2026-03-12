@@ -37,14 +37,26 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-/* Smooth theme change (simple, centralized) */
+/* Smooth theme change — scoped to avoid global reflow cost */
 @media (prefers-reduced-motion: no-preference) {
 
     html,
-    body,
-    body * {
-        transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease,
-            fill 200ms ease, stroke 200ms ease;
+    body {
+        transition: background-color 200ms ease, color 200ms ease;
+    }
+
+    /* Theme-transitioning elements only */
+    .hero,
+    .about,
+    .projects-section,
+    .contact,
+    .footer,
+    .navbar,
+    .ui-section,
+    .ui-card,
+    .ui-btn,
+    .ui-tag {
+        transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease;
     }
 }
 

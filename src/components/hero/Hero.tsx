@@ -116,6 +116,9 @@ const Hero: React.FC = () => {
                             src="/images/SecretIGO_ico.png"
                             alt="Johanz David Tolentino"
                             className="hero-image"
+                            width={500}
+                            height={500}
+                            decoding="async"
                         />
                     </div>
                 </div>

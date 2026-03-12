@@ -47,6 +47,7 @@
     flex-direction: column;
     gap: var(--space-5);
     align-items: flex-start;
+    flex: 1;
 }
 
 .hero-badge {
@@ -238,7 +239,7 @@
 @keyframes fadeInUp {
     from {
         opacity: 0;
-        transform: translateY(30px);
+        transform: translateY(20px);
     }
 
     to {
@@ -339,7 +340,7 @@
 
     .hero-image-wrapper {
         width: min(320px, 90vw);
-        height: auto;
+        aspect-ratio: 1 / 1;
     }
 
     .hero-actions {
