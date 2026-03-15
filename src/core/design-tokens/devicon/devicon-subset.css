@@ -1,0 +1,61 @@
+/* AUTO-GENERATED — do not edit manually. */
+/* Add icons to src/data/landingpage/about.ts; this file regenerates on build/dev. */
+
+@font-face {
+    font-family: "devicon";
+    src: url("../../../../node_modules/devicon/fonts/devicon.woff") format("woff"),
+         url("../../../../node_modules/devicon/fonts/devicon.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
+
+[class^="devicon-"],
+[class*=" devicon-"] {
+    font-family: "devicon" !important;
+    speak: never;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.devicon-babel-plain:before { content: "\e93d"; }
+.devicon-bootstrap-plain:before { content: "\e950"; }
+.devicon-css3-plain:before { content: "\e9a1"; }
+.devicon-django-plain:before { content: "\e9bd"; }
+.devicon-docker-plain:before { content: "\e9c3"; }
+.devicon-express-plain:before { content: "\e9ec"; }
+.devicon-figma-plain:before { content: "\e9f9"; }
+.devicon-firebase-plain:before { content: "\ea00"; }
+.devicon-git-plain:before { content: "\ea2d"; }
+.devicon-github-plain:before { content: "\ea29"; }
+.devicon-gitlab-plain:before { content: "\ea2b"; }
+.devicon-graphql-plain:before { content: "\ea45"; }
+.devicon-html5-plain:before { content: "\ea67"; }
+.devicon-java-plain:before { content: "\ea7f"; }
+.devicon-javascript-plain:before { content: "\ea81"; }
+.devicon-jest-plain:before { content: "\ea88"; }
+.devicon-jira-plain:before { content: "\ea90"; }
+.devicon-mongodb-plain:before { content: "\eaf5"; }
+.devicon-mysql-plain:before { content: "\eafd"; }
+.devicon-nestjs-plain:before { content: "\eb09"; }
+.devicon-nextjs-plain:before { content: "\eb14"; }
+.devicon-nodejs-plain:before { content: "\ed9e"; }
+.devicon-npm-plain:before { content: "\edaf"; }
+.devicon-postgresql-plain:before { content: "\eb79"; }
+.devicon-python-plain:before { content: "\eb9c"; }
+.devicon-react-plain:before { content: "\ebbc"; }
+.devicon-redis-plain:before { content: "\ebc8"; }
+.devicon-redux-plain:before { content: "\ebca"; }
+.devicon-sass-plain:before { content: "\ebee"; }
+.devicon-spring-plain:before { content: "\ec16"; }
+.devicon-sqlite-plain:before { content: "\ec1e"; }
+.devicon-tailwindcss-plain:before { content: "\ec39"; }
+.devicon-typescript-plain:before { content: "\ec63"; }
+.devicon-vscode-plain:before { content: "\ec8e"; }
+.devicon-webpack-plain:before { content: "\eca2"; }
+.devicon-yarn-plain:before { content: "\ecb8"; }

@@ -49,7 +49,7 @@ const About: React.FC = () => {
             ([entry]) => {
                 if (entry.isIntersecting) {
                     // @ts-ignore — Vite handles dynamic CSS imports; TS lacks the type
-                    import('devicon/devicon.min.css');
+                    import('../../core/design-tokens/devicon/devicon-subset.css');
                     observer.disconnect();
                 }
             },
