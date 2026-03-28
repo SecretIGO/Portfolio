@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
-import { GLOW_BLUR } from './mouseEffects.config';
+
 import { startEffectEngine } from './mouseEffects.engine';
 
 const MouseEffects = () => {
@@ -17,9 +17,15 @@ const MouseEffects = () => {
         <div style={{ position: 'fixed', inset: 0, zIndex: 999999, pointerEvents: 'none' }} aria-hidden="true">
             <svg ref={svgRef} width="100%" height="100%" preserveAspectRatio="none">
                 <defs>
-                    <filter id="mouseGlow" x="-50%" y="-50%" width="200%" height="200%">
-                        <feGaussianBlur stdDeviation={GLOW_BLUR} result="blur" />
-                        <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+                    {/* Single ring glow — soft outer bloom + crisp inner edge */}
+                    <filter id="ringGlow" x="-60%" y="-60%" width="220%" height="220%">
+                        <feGaussianBlur stdDeviation={6} result="softBlur" />
+                        <feGaussianBlur stdDeviation={1.5} in="SourceGraphic" result="crispBlur" />
+                        <feMerge>
+                            <feMergeNode in="softBlur" />
+                            <feMergeNode in="crispBlur" />
+                            <feMergeNode in="SourceGraphic" />
+                        </feMerge>
                     </filter>
                 </defs>
                 <g ref={groupRef} />

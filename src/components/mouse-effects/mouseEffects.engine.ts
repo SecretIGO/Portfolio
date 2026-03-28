@@ -1,33 +1,35 @@
-import { RING, SPARK, FLASH, createSvgElement, randomColor, setAttributes } from './mouseEffects.config';
+import { EXPLOSION_RING, CLICK_FLASH, createSvgElement, pickRandomExplosionColor, setAttributes } from './mouseEffects.config';
 import type { Effect } from './mouseEffects.types';
 
 function tickEffect(effect: Effect, dt: number): boolean {
     effect.age += dt;
-    const progress = Math.min(1, effect.age / effect.life);
-    const fade = 1 - progress;
+    const lifetimeProgress = Math.min(1, effect.age / effect.life);
+    const remainingLife = 1 - lifetimeProgress;
 
     switch (effect.kind) {
-        case 'ring':
-            effect.r += effect.vr * dt;
-            setAttributes(effect.el, { r: effect.r, opacity: fade, 'stroke-width': Math.max(0, effect.sw * fade) });
-            break;
+        case 'ring': {
+            const easeOutCubic = 1 - Math.pow(1 - lifetimeProgress, 3);
+            effect.currentRadius = effect.maxRadius * easeOutCubic;
 
-        case 'spark': {
-            const drag = 1 - progress * 0.8;
-            const tail = SPARK.tail * (1 - progress * 0.5);
-            effect.x += effect.vx * dt * drag;
-            effect.y += effect.vy * dt * drag;
+            const FADE_START = 0.6;
+            const opacityScalar = lifetimeProgress < FADE_START
+                ? 1
+                : 1 - (lifetimeProgress - FADE_START) / (1 - FADE_START);
+
             setAttributes(effect.el, {
-                x1: effect.x - effect.nx * tail, y1: effect.y - effect.ny * tail,
-                x2: effect.x, y2: effect.y, opacity: fade,
+                r: effect.currentRadius,
+                opacity: effect.peakOpacity * opacityScalar,
+                'stroke-width': Math.max(0, effect.strokeWidth * Math.pow(remainingLife, 0.2)),
             });
             break;
         }
 
         case 'flash':
-            setAttributes(effect.el, { r: FLASH.radius * (1 - fade ** 3), opacity: fade * 0.5 });
+            setAttributes(effect.el, {
+                r: CLICK_FLASH.maxRadius * (1 - Math.pow(remainingLife, 3)),
+                opacity: remainingLife * 0.6,
+            });
             break;
-
     }
 
     return effect.age >= effect.life;
@@ -47,40 +49,26 @@ export function startEffectEngine(group: SVGGElement, getSvg: () => SVGSVGElemen
     const syncViewBox = () =>
         getSvg()?.setAttribute('viewBox', `0 0 ${window.innerWidth} ${window.innerHeight}`);
 
-    const onPointerDown = ({ clientX: x, clientY: y }: PointerEvent) => {
+    const onPointerDown = ({ clientX: clickX, clientY: clickY }: PointerEvent) => {
         add('circle',
-            { cx: x, cy: y, r: 0, fill: FLASH.color, opacity: 0.5, filter: 'url(#mouseGlow)' },
-            { kind: 'flash', age: 0, life: FLASH.life },
+            { cx: clickX, cy: clickY, r: 0, fill: CLICK_FLASH.color, opacity: 0.8, filter: `url(#${CLICK_FLASH.svgFilterId})` },
+            { kind: 'flash', age: 0, life: CLICK_FLASH.lifetimeSeconds },
         );
 
-        for (let i = 0; i < RING.perClick; i++) {
-            const strokeWidth = RING.stroke + Math.random() * 2;
-            add('circle', {
-                cx: x, cy: y, r: 0, fill: 'none',
-                stroke: randomColor(), 'stroke-width': strokeWidth,
-                opacity: 0.65, filter: 'url(#mouseGlow)',
-            }, {
-                kind: 'ring', r: 0, sw: strokeWidth,
-                vr: RING.speed + (Math.random() - 0.5) * 2 * RING.jitter,
-                age: 0, life: RING.life + (Math.random() - 0.5) * RING.lifeJitter,
-            });
-        }
-
-        for (let i = 0; i < SPARK.count; i++) {
-            const angle = (Math.PI * 2 * i) / SPARK.count + Math.random() * 0.5;
-            const nx = Math.cos(angle);
-            const ny = Math.sin(angle);
-            const speed = SPARK.speed * (1 - SPARK.variance + Math.random() * SPARK.variance * 2);
-            add('line', {
-                x1: x, y1: y, x2: x, y2: y,
-                stroke: randomColor(), 'stroke-width': SPARK.stroke,
-                'stroke-linecap': 'round', opacity: 0.7, filter: 'url(#mouseGlow)',
-            }, {
-                kind: 'spark', x, y,
-                vx: nx * speed, vy: ny * speed, nx, ny,
-                age: 0, life: SPARK.life,
-            });
-        }
+        add('circle', {
+            cx: clickX, cy: clickY, r: 0, fill: 'none',
+            stroke: pickRandomExplosionColor(),
+            'stroke-width': EXPLOSION_RING.strokeWidth,
+            opacity: EXPLOSION_RING.peakOpacity,
+            filter: `url(#${EXPLOSION_RING.svgFilterId})`,
+        }, {
+            kind: 'ring',
+            currentRadius: 0,
+            maxRadius: EXPLOSION_RING.maxRadius,
+            strokeWidth: EXPLOSION_RING.strokeWidth,
+            peakOpacity: EXPLOSION_RING.peakOpacity,
+            age: 0, life: EXPLOSION_RING.lifetimeSeconds,
+        });
     };
 
     const tick = (now: number) => {
